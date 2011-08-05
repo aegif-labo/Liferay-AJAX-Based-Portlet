@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<project name="roomReservation-portlet" basedir="." default="deploy">
+	<import file="../build-common-portlet.xml" />
+	
+	<!-- mryoshio add to generate resource bundle -->
+	<target name="build-lang">
+		<antcall target="build-lang-cmd">
+			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
+			<param name="lang.file" value="Language" />
+		</antcall>
+	</target>
+</project>

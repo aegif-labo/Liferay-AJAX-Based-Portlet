@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="jp.aegif.liferay.experiment.mryoshio.rr.service.RoomLocalService" class="jp.aegif.liferay.experiment.mryoshio.rr.service.impl.RoomLocalServiceImpl" />
+	<bean id="jp.aegif.liferay.experiment.mryoshio.rr.service.RoomLocalServiceUtil" class="jp.aegif.liferay.experiment.mryoshio.rr.service.RoomLocalServiceUtil">
+		<property name="service" ref="jp.aegif.liferay.experiment.mryoshio.rr.service.RoomLocalService" />
+	</bean>
+	<bean id="jp.aegif.liferay.experiment.mryoshio.rr.service.persistence.RoomPersistence" class="jp.aegif.liferay.experiment.mryoshio.rr.service.persistence.RoomPersistenceImpl" parent="basePersistence" />
+	<bean id="jp.aegif.liferay.experiment.mryoshio.rr.service.ReservationLocalService" class="jp.aegif.liferay.experiment.mryoshio.rr.service.impl.ReservationLocalServiceImpl" />
+	<bean id="jp.aegif.liferay.experiment.mryoshio.rr.service.ReservationLocalServiceUtil" class="jp.aegif.liferay.experiment.mryoshio.rr.service.ReservationLocalServiceUtil">
+		<property name="service" ref="jp.aegif.liferay.experiment.mryoshio.rr.service.ReservationLocalService" />
+	</bean>
+	<bean id="jp.aegif.liferay.experiment.mryoshio.rr.service.persistence.ReservationPersistence" class="jp.aegif.liferay.experiment.mryoshio.rr.service.persistence.ReservationPersistenceImpl" parent="basePersistence" />
+</beans>

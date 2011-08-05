@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="jp.aegif.liferay.experiment.mryoshio.rr.model.Room">
+		<field name="roomId" type="int" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="name" type="String" />
+		<field name="capacity" type="int" />
+		<field name="available" type="boolean" />
+	</model>
+	<model name="jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation">
+		<field name="reservationId" type="int" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="roomId" type="int" />
+		<field name="beginTime" type="Date" />
+		<field name="endTime" type="Date" />
+		<field name="userId" type="long" />
+		<field name="note" type="String" />
+	</model>
+</model-hints>

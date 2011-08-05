@@ -1,0 +1,103 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+<service-builder package-path="jp.aegif.liferay.experiment.mryoshio.rr">
+
+	<!-- see http://content.liferay.com/4.0.0/docs/developers/ch05s01.html -->
+
+
+	<author>ashitaba.yoshioka@aegif.jp</author>
+	<namespace>rr</namespace>
+
+
+	<entity name="Room" remote-service="false" local-service="true">
+
+		<!-- primary key -->
+		<column name="roomId" type="int" primary="true" id-type="increment"></column>
+
+		<!-- foreign key -->
+		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
+
+		<!-- other fields -->
+		<column name="name" type="String"></column>
+		<column name="capacity" type="int"></column>
+		<column name="available" type="boolean"></column>
+
+		<!-- sort order -->
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
+		<!-- finder methods except for primary key -->
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="Name">
+			<finder-column name="name"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="Available">
+			<finder-column name="available"></finder-column>
+		</finder>
+
+	</entity>
+
+	<entity name="Reservation" remote-service="false" local-service="true">
+
+		<!-- primary key -->
+		<column name="reservationId" type="int" primary="true" id-type="increment"></column>
+
+		<!-- foreign key -->
+		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
+		<column name="roomId" type="int" />
+
+		<!-- other fields -->
+		<column name="beginTime" type="Date"></column>
+		<column name="endTime" type="Date"></column>
+		<column name="userId" type="long" />
+		<column name="note" type="String" />
+
+		<!-- sort order -->
+		<order by="asc">
+			<order-column name="roomId" />
+			<order-column name="beginTime" />
+			<order-column name="endTime" />
+		</order>
+
+		<!-- finder methods except for primary key -->
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="RoomId">
+			<finder-column name="roomId"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="BeginTime">
+			<finder-column name="beginTime"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="EndTime">
+			<finder-column name="endTime"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="G_R_U">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="roomId"></finder-column>
+			<finder-column name="userId"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="G_R_B">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="roomId"></finder-column>
+			<finder-column name="beginTime"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="G_R_E">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="roomId"></finder-column>
+			<finder-column name="endTime"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="G_B_E">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="beginTime"></finder-column>
+			<finder-column name="endTime"></finder-column>
+		</finder>
+	</entity>
+
+
+
+</service-builder>

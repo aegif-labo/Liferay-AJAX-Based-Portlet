@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="jp.aegif.liferay.experiment.mryoshio.rr.model.impl.RoomModelImpl">
+		<attributes>
+			<id name="roomId" />
+			<basic name="companyId" />
+			<basic name="groupId" />
+			<basic name="name" />
+			<basic name="capacity" />
+			<basic name="available" />
+			<transient name="primaryKey" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="jp.aegif.liferay.experiment.mryoshio.rr.model.impl.ReservationModelImpl">
+		<attributes>
+			<id name="reservationId" />
+			<basic name="companyId" />
+			<basic name="groupId" />
+			<basic name="roomId" />
+			<basic name="beginTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="userId" />
+			<basic name="note" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="jp.aegif.liferay.experiment.mryoshio.rr.model.impl.RoomImpl" name="Room">
+		<table name="rr_Room" />
+		<attributes />
+	</entity>
+	<entity class="jp.aegif.liferay.experiment.mryoshio.rr.model.impl.ReservationImpl" name="Reservation">
+		<table name="rr_Reservation" />
+		<attributes />
+	</entity>
+</entity-mappings>

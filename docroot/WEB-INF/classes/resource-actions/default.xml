@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource-action-mapping>
+
+
+	<portlet-resource>
+		<portlet-name>room</portlet-name>
+		<supports>
+			<action-key>ADD_TO_PAGE</action-key>
+			<action-key>CONFIGURATION</action-key>
+			<action-key>VIEW</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported />
+	</portlet-resource>
+
+
+	<portlet-resource>
+		<portlet-name>reservation</portlet-name>
+		<supports>
+			<action-key>ADD_TO_PAGE</action-key>
+			<action-key>CONFIGURATION</action-key>
+			<action-key>VIEW</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported />
+	</portlet-resource>
+
+
+	<model-resource>
+		<model-name>jp.aegif.liferay.experiment.mryoshio.rr.model
+		</model-name>
+		<portlet-ref>
+			<portlet-name>room</portlet-name>
+		</portlet-ref>
+		<supports>
+			<action-key>ADD_ROOM</action-key>
+			<action-key>ADD_RESERVATION</action-key>
+		</supports>
+		<community-defaults />
+		<guest-defaults />
+		<guest-unsupported>
+			<action-key>ADD_ROOM</action-key>
+			<action-key>ADD_RESERVATION</action-key>
+		</guest-unsupported>
+	</model-resource>
+
+
+	<model-resource>
+		<model-name>jp.aegif.liferay.experiment.mryoshio.rr.model.Room
+		</model-name>
+		<portlet-ref>
+			<portlet-name>room</portlet-name>
+		</portlet-ref>
+		<supports>
+			<action-key>DELETE</action-key>
+			<action-key>PERMISSIONS</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>UPDATE</action-key>
+		</guest-unsupported>
+	</model-resource>
+
+
+	<model-resource>
+		<model-name>jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation
+		</model-name>
+		<portlet-ref>
+			<portlet-name>reservation</portlet-name>
+		</portlet-ref>
+		<supports>
+			<action-key>DELETE</action-key>
+			<action-key>PERMISSIONS</action-key>
+			<action-key>UPDATE</action-key>
+			<action-key>VIEW</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>UPDATE</action-key>
+		</guest-unsupported>
+	</model-resource>
+
+
+</resource-action-mapping>

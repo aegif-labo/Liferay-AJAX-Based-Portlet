@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="jp.aegif.liferay.experiment.mryoshio.rr.model.Room" />
+	<import class="jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation" />
+	<class name="jp.aegif.liferay.experiment.mryoshio.rr.model.impl.RoomImpl" table="rr_Room">
+		<cache usage="read-write" />
+		<id name="roomId" type="int">
+			<generator class="increment" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="capacity" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="available" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="jp.aegif.liferay.experiment.mryoshio.rr.model.impl.ReservationImpl" table="rr_Reservation">
+		<cache usage="read-write" />
+		<id name="reservationId" type="int">
+			<generator class="increment" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="roomId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="beginTime" type="org.hibernate.type.TimestampType" />
+		<property name="endTime" type="org.hibernate.type.TimestampType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="note" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
