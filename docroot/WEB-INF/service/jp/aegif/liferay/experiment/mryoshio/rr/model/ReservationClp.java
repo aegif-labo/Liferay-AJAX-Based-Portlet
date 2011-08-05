@@ -79,6 +79,14 @@ public class ReservationClp extends BaseModelImpl<Reservation>
 		_roomId = roomId;
 	}
 
+	public long getOwnerId() {
+		return _ownerId;
+	}
+
+	public void setOwnerId(long ownerId) {
+		_ownerId = ownerId;
+	}
+
 	public Date getBeginTime() {
 		return _beginTime;
 	}
@@ -137,6 +145,7 @@ public class ReservationClp extends BaseModelImpl<Reservation>
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
 		clone.setRoomId(getRoomId());
+		clone.setOwnerId(getOwnerId());
 		clone.setBeginTime(getBeginTime());
 		clone.setEndTime(getEndTime());
 		clone.setUserId(getUserId());
@@ -206,7 +215,7 @@ public class ReservationClp extends BaseModelImpl<Reservation>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{reservationId=");
 		sb.append(getReservationId());
@@ -216,6 +225,8 @@ public class ReservationClp extends BaseModelImpl<Reservation>
 		sb.append(getGroupId());
 		sb.append(", roomId=");
 		sb.append(getRoomId());
+		sb.append(", ownerId=");
+		sb.append(getOwnerId());
 		sb.append(", beginTime=");
 		sb.append(getBeginTime());
 		sb.append(", endTime=");
@@ -230,7 +241,7 @@ public class ReservationClp extends BaseModelImpl<Reservation>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation");
@@ -251,6 +262,10 @@ public class ReservationClp extends BaseModelImpl<Reservation>
 		sb.append(
 			"<column><column-name>roomId</column-name><column-value><![CDATA[");
 		sb.append(getRoomId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ownerId</column-name><column-value><![CDATA[");
+		sb.append(getOwnerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>beginTime</column-name><column-value><![CDATA[");
@@ -278,6 +293,7 @@ public class ReservationClp extends BaseModelImpl<Reservation>
 	private long _companyId;
 	private long _groupId;
 	private int _roomId;
+	private long _ownerId;
 	private Date _beginTime;
 	private Date _endTime;
 	private long _userId;

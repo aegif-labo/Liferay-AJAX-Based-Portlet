@@ -114,6 +114,20 @@ public interface ReservationModel extends BaseModel<Reservation> {
 	public void setRoomId(int roomId);
 
 	/**
+	 * Gets the owner id of this reservation.
+	 *
+	 * @return the owner id of this reservation
+	 */
+	public long getOwnerId();
+
+	/**
+	 * Sets the owner id of this reservation.
+	 *
+	 * @param ownerId the owner id of this reservation
+	 */
+	public void setOwnerId(long ownerId);
+
+	/**
 	 * Gets the begin time of this reservation.
 	 *
 	 * @return the begin time of this reservation

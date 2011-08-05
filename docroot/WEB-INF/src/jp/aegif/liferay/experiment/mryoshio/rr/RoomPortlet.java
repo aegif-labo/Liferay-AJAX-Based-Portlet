@@ -109,6 +109,7 @@ public class RoomPortlet extends TemplatePortlet {
 		room.setName(ParamUtil.getString(req, "name"));
 		room.setCapacity(ParamUtil.getInteger(req, "capacity"));
 		room.setAvailable(ParamUtil.getBoolean(req, "available"));
+		room.setOwnerId(themeDisplay.getUserId());
 
 		return room;
 	}

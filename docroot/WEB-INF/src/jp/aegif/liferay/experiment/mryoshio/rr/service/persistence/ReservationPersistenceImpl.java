@@ -395,6 +395,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 		reservationImpl.setCompanyId(reservation.getCompanyId());
 		reservationImpl.setGroupId(reservation.getGroupId());
 		reservationImpl.setRoomId(reservation.getRoomId());
+		reservationImpl.setOwnerId(reservation.getOwnerId());
 		reservationImpl.setBeginTime(reservation.getBeginTime());
 		reservationImpl.setEndTime(reservation.getEndTime());
 		reservationImpl.setUserId(reservation.getUserId());

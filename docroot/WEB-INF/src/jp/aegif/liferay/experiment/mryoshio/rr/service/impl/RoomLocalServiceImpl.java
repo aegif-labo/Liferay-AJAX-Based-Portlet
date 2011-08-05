@@ -54,19 +54,9 @@ public class RoomLocalServiceImpl extends RoomLocalServiceBaseImpl {
 	public void addRoom(Room room, long userId) throws SystemException,
 			PortalException {
 		super.addRoom(room);
-//		ResourcePermissionLocalServiceUtil.addResourcePermission(room.getCompanyId(), roo, scope, primKey, roleId, actionId)
-		// NG resourceLocalService.addResource(room.getCompanyId(),
-		// Room.class.getName(),ResourceConstants.SCOPE_INDIVIDUAL,String.valueOf(room.getRoomId()));
 		resourceLocalService.addResources(room.getCompanyId(),
 				room.getGroupId(), userId, Room.class.getName(),
-				room.getPrimaryKey(), false, true, true);
-		System.err.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-		// resourceLocalService.addResources(room.getCompanyId(),
-		// room.getGroupId(), userId, Room.class.getName(),
-		// room.getRoomId(), false, true, true);
-		// NG resourceLocalService.addModelResources(room.getCompanyId(),
-		// room.getGroupId(), userId,
-		// Room.class.getName(), room.getRoomId(),null, null);
+				room.getRoomId(), false, true, true);
 	}
 
 	public void deleteRoom(Room room) throws SystemException, PortalException {

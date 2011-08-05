@@ -97,6 +97,20 @@ public interface RoomModel extends BaseModel<Room> {
 	public void setGroupId(long groupId);
 
 	/**
+	 * Gets the owner id of this room.
+	 *
+	 * @return the owner id of this room
+	 */
+	public long getOwnerId();
+
+	/**
+	 * Sets the owner id of this room.
+	 *
+	 * @param ownerId the owner id of this room
+	 */
+	public void setOwnerId(long ownerId);
+
+	/**
 	 * Gets the name of this room.
 	 *
 	 * @return the name of this room

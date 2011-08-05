@@ -52,11 +52,12 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 			{ "roomId", new Integer(Types.INTEGER) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
+			{ "ownerId", new Integer(Types.BIGINT) },
 			{ "name", new Integer(Types.VARCHAR) },
 			{ "capacity", new Integer(Types.INTEGER) },
 			{ "available", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table rr_Room (roomId INTEGER not null primary key,companyId LONG,groupId LONG,name VARCHAR(75) null,capacity INTEGER,available BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table rr_Room (roomId INTEGER not null primary key,companyId LONG,groupId LONG,ownerId LONG,name VARCHAR(75) null,capacity INTEGER,available BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table rr_Room";
 	public static final String ORDER_BY_JPQL = " ORDER BY room.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY rr_Room.name ASC";
@@ -111,6 +112,14 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 		_groupId = groupId;
 	}
 
+	public long getOwnerId() {
+		return _ownerId;
+	}
+
+	public void setOwnerId(long ownerId) {
+		_ownerId = ownerId;
+	}
+
 	public String getName() {
 		if (_name == null) {
 			return StringPool.BLANK;
@@ -160,6 +169,7 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 		clone.setRoomId(getRoomId());
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
+		clone.setOwnerId(getOwnerId());
 		clone.setName(getName());
 		clone.setCapacity(getCapacity());
 		clone.setAvailable(getAvailable());
@@ -208,7 +218,7 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{roomId=");
 		sb.append(getRoomId());
@@ -216,6 +226,8 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 		sb.append(getCompanyId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
+		sb.append(", ownerId=");
+		sb.append(getOwnerId());
 		sb.append(", name=");
 		sb.append(getName());
 		sb.append(", capacity=");
@@ -228,7 +240,7 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("jp.aegif.liferay.experiment.mryoshio.rr.model.Room");
@@ -245,6 +257,10 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
 		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ownerId</column-name><column-value><![CDATA[");
+		sb.append(getOwnerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
@@ -267,6 +283,7 @@ public class RoomModelImpl extends BaseModelImpl<Room> implements RoomModel {
 	private int _roomId;
 	private long _companyId;
 	private long _groupId;
+	private long _ownerId;
 	private String _name;
 	private int _capacity;
 	private boolean _available;

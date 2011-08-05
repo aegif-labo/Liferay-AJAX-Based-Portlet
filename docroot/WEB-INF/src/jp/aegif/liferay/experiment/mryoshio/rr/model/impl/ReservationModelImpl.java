@@ -59,12 +59,13 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
 			{ "roomId", new Integer(Types.INTEGER) },
+			{ "ownerId", new Integer(Types.BIGINT) },
 			{ "beginTime", new Integer(Types.TIMESTAMP) },
 			{ "endTime", new Integer(Types.TIMESTAMP) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "note", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table rr_Reservation (reservationId INTEGER not null primary key,companyId LONG,groupId LONG,roomId INTEGER,beginTime DATE null,endTime DATE null,userId LONG,note VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table rr_Reservation (reservationId INTEGER not null primary key,companyId LONG,groupId LONG,roomId INTEGER,ownerId LONG,beginTime DATE null,endTime DATE null,userId LONG,note VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table rr_Reservation";
 	public static final String ORDER_BY_JPQL = " ORDER BY reservation.roomId ASC, reservation.beginTime ASC, reservation.endTime ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY rr_Reservation.roomId ASC, rr_Reservation.beginTime ASC, rr_Reservation.endTime ASC";
@@ -125,6 +126,14 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 
 	public void setRoomId(int roomId) {
 		_roomId = roomId;
+	}
+
+	public long getOwnerId() {
+		return _ownerId;
+	}
+
+	public void setOwnerId(long ownerId) {
+		_ownerId = ownerId;
 	}
 
 	public Date getBeginTime() {
@@ -190,6 +199,7 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
 		clone.setRoomId(getRoomId());
+		clone.setOwnerId(getOwnerId());
 		clone.setBeginTime(getBeginTime());
 		clone.setEndTime(getEndTime());
 		clone.setUserId(getUserId());
@@ -259,7 +269,7 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{reservationId=");
 		sb.append(getReservationId());
@@ -269,6 +279,8 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 		sb.append(getGroupId());
 		sb.append(", roomId=");
 		sb.append(getRoomId());
+		sb.append(", ownerId=");
+		sb.append(getOwnerId());
 		sb.append(", beginTime=");
 		sb.append(getBeginTime());
 		sb.append(", endTime=");
@@ -283,7 +295,7 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation");
@@ -304,6 +316,10 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 		sb.append(
 			"<column><column-name>roomId</column-name><column-value><![CDATA[");
 		sb.append(getRoomId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ownerId</column-name><column-value><![CDATA[");
+		sb.append(getOwnerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>beginTime</column-name><column-value><![CDATA[");
@@ -331,6 +347,7 @@ public class ReservationModelImpl extends BaseModelImpl<Reservation>
 	private long _companyId;
 	private long _groupId;
 	private int _roomId;
+	private long _ownerId;
 	private Date _beginTime;
 	private Date _endTime;
 	private long _userId;

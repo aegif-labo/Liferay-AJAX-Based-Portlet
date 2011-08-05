@@ -65,6 +65,14 @@ public class RoomClp extends BaseModelImpl<Room> implements Room {
 		_groupId = groupId;
 	}
 
+	public long getOwnerId() {
+		return _ownerId;
+	}
+
+	public void setOwnerId(long ownerId) {
+		_ownerId = ownerId;
+	}
+
 	public String getName() {
 		return _name;
 	}
@@ -109,6 +117,7 @@ public class RoomClp extends BaseModelImpl<Room> implements Room {
 		clone.setRoomId(getRoomId());
 		clone.setCompanyId(getCompanyId());
 		clone.setGroupId(getGroupId());
+		clone.setOwnerId(getOwnerId());
 		clone.setName(getName());
 		clone.setCapacity(getCapacity());
 		clone.setAvailable(getAvailable());
@@ -157,7 +166,7 @@ public class RoomClp extends BaseModelImpl<Room> implements Room {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{roomId=");
 		sb.append(getRoomId());
@@ -165,6 +174,8 @@ public class RoomClp extends BaseModelImpl<Room> implements Room {
 		sb.append(getCompanyId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
+		sb.append(", ownerId=");
+		sb.append(getOwnerId());
 		sb.append(", name=");
 		sb.append(getName());
 		sb.append(", capacity=");
@@ -177,7 +188,7 @@ public class RoomClp extends BaseModelImpl<Room> implements Room {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("jp.aegif.liferay.experiment.mryoshio.rr.model.Room");
@@ -194,6 +205,10 @@ public class RoomClp extends BaseModelImpl<Room> implements Room {
 		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
 		sb.append(getGroupId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>ownerId</column-name><column-value><![CDATA[");
+		sb.append(getOwnerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
@@ -216,6 +231,7 @@ public class RoomClp extends BaseModelImpl<Room> implements Room {
 	private int _roomId;
 	private long _companyId;
 	private long _groupId;
+	private long _ownerId;
 	private String _name;
 	private int _capacity;
 	private boolean _available;

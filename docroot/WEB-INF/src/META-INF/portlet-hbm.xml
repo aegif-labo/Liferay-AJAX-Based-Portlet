@@ -11,6 +11,7 @@
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ownerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="capacity" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="available" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
@@ -23,6 +24,7 @@
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="roomId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="ownerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="beginTime" type="org.hibernate.type.TimestampType" />
 		<property name="endTime" type="org.hibernate.type.TimestampType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

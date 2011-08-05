@@ -78,9 +78,13 @@
 
 <script type="text/javascript">
 	AUI().ready('aui-node', function(A) {
-		A.get("#<portlet:namespace />showAddRoom").on("click", function() {
-			<portlet:namespace/>_showJspInPanel('add-view', 0);
-		});
+		var button = A.get("#<portlet:namespace />showAddRoom");
+		if(button == null) {
+		} else {
+			A.get("#<portlet:namespace />showAddRoom").on("click", 
+					function() { <portlet:namespace/>_showJspInPanel('add-view', 0); }
+			);
+		}
 	});
 </script>
 

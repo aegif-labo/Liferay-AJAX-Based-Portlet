@@ -5,6 +5,7 @@
 		<field name="roomId" type="int" />
 		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
+		<field name="ownerId" type="long" />
 		<field name="name" type="String" />
 		<field name="capacity" type="int" />
 		<field name="available" type="boolean" />
@@ -14,6 +15,7 @@
 		<field name="companyId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="roomId" type="int" />
+		<field name="ownerId" type="long" />
 		<field name="beginTime" type="Date" />
 		<field name="endTime" type="Date" />
 		<field name="userId" type="long" />

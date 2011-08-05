@@ -68,6 +68,14 @@ public class ReservationWrapper implements Reservation {
 		_reservation.setRoomId(roomId);
 	}
 
+	public long getOwnerId() {
+		return _reservation.getOwnerId();
+	}
+
+	public void setOwnerId(long ownerId) {
+		_reservation.setOwnerId(ownerId);
+	}
+
 	public java.util.Date getBeginTime() {
 		return _reservation.getBeginTime();
 	}

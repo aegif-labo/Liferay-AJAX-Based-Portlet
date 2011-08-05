@@ -83,9 +83,12 @@
 	AUI().ready(
 			'aui-node',
 			function(A) {
-				A.get("#<portlet:namespace />showAddReservation").on("click",
-						function() {
-							<portlet:namespace/>_showJspInPanel('add-view', 0);
-						});
+				var button = A.get("#<portlet:namespace />showAddReservation");
+				if(button == null) {
+				} else {
+				    A.get("#<portlet:namespace />showAddReservation").on("click",
+						function() { <portlet:namespace/>_showJspInPanel('add-view', 0); }
+				    );
+				}
 			});
 </script>

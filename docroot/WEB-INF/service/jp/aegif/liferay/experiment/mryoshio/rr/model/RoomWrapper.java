@@ -60,6 +60,14 @@ public class RoomWrapper implements Room {
 		_room.setGroupId(groupId);
 	}
 
+	public long getOwnerId() {
+		return _room.getOwnerId();
+	}
+
+	public void setOwnerId(long ownerId) {
+		_room.setOwnerId(ownerId);
+	}
+
 	public java.lang.String getName() {
 		return _room.getName();
 	}

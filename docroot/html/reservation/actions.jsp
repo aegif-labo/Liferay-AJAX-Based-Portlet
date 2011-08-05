@@ -23,20 +23,33 @@
 	updateUrl.append("_showJspInPanel('update-view', '");
 	updateUrl.append(String.valueOf(reservationId));
 	updateUrl.append("')");
+	
+	boolean deletable = false;
+    boolean updatable = false;
+    if (permissionChecker.isCompanyAdmin(reservation.getCompanyId())
+            || permissionChecker.isCommunityAdmin(reservation.getGroupId())
+            || permissionChecker.isCommunityOwner(reservation.getGroupId())) {
+        updatable = deletable = true;
+    } else {
+        updatable = permissionChecker.hasOwnerPermission(
+                reservation.getCompanyId(), Reservation.class.getName(), reservationId,
+                reservation.getOwnerId(), ActionKeys.UPDATE);
+        deletable = permissionChecker.hasOwnerPermission(
+                reservation.getCompanyId(), Reservation.class.getName(), reservationId,
+                reservation.getOwnerId(), ActionKeys.DELETE);
+    }
 %>
 
 
 
 <liferay-ui:icon-menu>
 
-	<c:if
-		test="<%= permissionChecker.hasPermission(groupId, name, reservationId, ActionKeys.UPDATE) %>">
+	<c:if test="<%= updatable %>">
 		<liferay-ui:icon image="edit" message="reservation-show-update"
 			url="<%= updateUrl.toString() %>" />
 	</c:if>
 
-	<c:if
-		test="<%= permissionChecker.hasPermission(groupId, name, reservationId, ActionKeys.DELETE) %>">
+	<c:if test="<%= deletable %>">
 		<liferay-ui:icon image="delete" message="reservation-show-delete"
 			url="<%= confirmUrl.toString() %>" />
 	</c:if>

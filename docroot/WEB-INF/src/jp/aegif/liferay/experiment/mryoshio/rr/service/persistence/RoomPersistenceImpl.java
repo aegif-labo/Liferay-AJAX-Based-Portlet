@@ -308,6 +308,7 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 		roomImpl.setRoomId(room.getRoomId());
 		roomImpl.setCompanyId(room.getCompanyId());
 		roomImpl.setGroupId(room.getGroupId());
+		roomImpl.setOwnerId(room.getOwnerId());
 		roomImpl.setName(room.getName());
 		roomImpl.setCapacity(room.getCapacity());
 		roomImpl.setAvailable(room.isAvailable());

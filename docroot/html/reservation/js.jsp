@@ -44,7 +44,8 @@
 		console.debug("#_updateReservation");
 		var url;
 		url = '<portlet:resourceURL id="update-reservation" />';
-		<portlet:namespace/>updateReservation("<portlet:namespace/>", "updateForm", url);
+		<portlet:namespace/>updateReservation("<portlet:namespace/>",
+				"updateForm", url);
 	}
 
 	function <portlet:namespace/>updateReservation(ns, formid, url) {

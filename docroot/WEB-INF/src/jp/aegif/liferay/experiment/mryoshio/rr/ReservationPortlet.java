@@ -130,6 +130,7 @@ public class ReservationPortlet extends TemplatePortlet {
 		reservation.setEndTime(endCalendar.getTime());
 		reservation.setNote(ParamUtil.getString(req, "note"));
 		reservation.setUserId(ParamUtil.getInteger(req, "userId"));
+		reservation.setOwnerId(themeDisplay.getUserId());
 		return reservation;
 	}
 

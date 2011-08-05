@@ -26,19 +26,30 @@
 	updateUrl.append(String.valueOf(roomId));
 	updateUrl.append("')");
 
+	boolean deletable = false;
+	boolean updatable = false;
+	if (permissionChecker.isCompanyAdmin(room.getCompanyId())
+			|| permissionChecker.isCommunityAdmin(room.getGroupId())
+			|| permissionChecker.isCommunityOwner(room.getGroupId())) {
+		updatable = deletable = true;
+	} else {
+		updatable = permissionChecker.hasOwnerPermission(
+				room.getCompanyId(), Room.class.getName(), roomId,
+				room.getOwnerId(), ActionKeys.UPDATE);
+		deletable = permissionChecker.hasOwnerPermission(
+				room.getCompanyId(), Room.class.getName(), roomId,
+				room.getOwnerId(), ActionKeys.DELETE);
+	}
 %>
 
 <liferay-ui:icon-menu>
 
-
-	<c:if
-		test="<%= permissionChecker.hasPermission(groupId, name, roomId, ActionKeys.UPDATE) %>">
+	<c:if test="<%= updatable %>">
 		<liferay-ui:icon image="edit" message="room-show-update"
 			url="<%= updateUrl.toString() %>" />
 	</c:if>
 
-	<c:if
-		test="<%= permissionChecker.hasPermission(groupId, name, roomId, ActionKeys.DELETE) %>">
+	<c:if test="<%= deletable %>">
 		<liferay-ui:icon image="delete" message="room-show-delete"
 			url="<%= confirmUrl.toString() %>" />
 	</c:if>

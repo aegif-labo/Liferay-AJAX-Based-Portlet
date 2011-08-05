@@ -12,6 +12,7 @@
 			<id name="roomId" />
 			<basic name="companyId" />
 			<basic name="groupId" />
+			<basic name="ownerId" />
 			<basic name="name" />
 			<basic name="capacity" />
 			<basic name="available" />
@@ -24,6 +25,7 @@
 			<basic name="companyId" />
 			<basic name="groupId" />
 			<basic name="roomId" />
+			<basic name="ownerId" />
 			<basic name="beginTime">
 				<temporal>TIMESTAMP</temporal>
 			</basic>

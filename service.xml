@@ -16,6 +16,7 @@
 		<!-- foreign key -->
 		<column name="companyId" type="long" />
 		<column name="groupId" type="long" />
+		<column name="ownerId" type="long" />
 
 		<!-- other fields -->
 		<column name="name" type="String"></column>
@@ -49,6 +50,7 @@
 		<column name="companyId" type="long" />
 		<column name="groupId" type="long" />
 		<column name="roomId" type="int" />
+		<column name="ownerId" type="long" />
 
 		<!-- other fields -->
 		<column name="beginTime" type="Date"></column>
