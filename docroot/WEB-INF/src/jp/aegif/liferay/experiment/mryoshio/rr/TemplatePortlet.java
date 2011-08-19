@@ -3,21 +3,13 @@ package jp.aegif.liferay.experiment.mryoshio.rr;
 import java.util.Enumeration;
 import java.util.Iterator;
 
-import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 
 import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 public class TemplatePortlet extends MVCPortlet {
-
-	@Override
-	public void init() throws PortletException {
-		listJSP = getInitParameter("list-jsp");
-		super.init();
-	}
 
 	/**
 	 * 

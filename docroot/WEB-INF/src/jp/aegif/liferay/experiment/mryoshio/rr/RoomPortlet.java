@@ -2,6 +2,8 @@ package jp.aegif.liferay.experiment.mryoshio.rr;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
@@ -10,7 +12,11 @@ import javax.servlet.ServletException;
 
 import jp.aegif.liferay.experiment.mryoshio.rr.model.Room;
 import jp.aegif.liferay.experiment.mryoshio.rr.model.impl.RoomImpl;
+import jp.aegif.liferay.experiment.mryoshio.rr.service.ReservationLocalServiceUtil;
 import jp.aegif.liferay.experiment.mryoshio.rr.service.RoomLocalServiceUtil;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -49,9 +55,9 @@ public class RoomPortlet extends TemplatePortlet {
 						PortalUtil.getHttpServletRequest(req),
 						PortalUtil.getHttpServletResponse(res), editJSP, false);
 			} else if ("list-view".equals(rid)) {
-				ajaxResponse = PortalUtil.renderPage(pbag.getServletContext(),
-						PortalUtil.getHttpServletRequest(req),
-						PortalUtil.getHttpServletResponse(res), listJSP, false);
+				ajaxResponse = getListDataAsJson(
+						Integer.parseInt(req.getParameter("itemPerPage")),
+						Integer.parseInt(req.getParameter("targetPage")));
 			} else if ("update-room".equals(rid)) {
 				updateRoom(req);
 			} else if ("delete-room".equals(rid)) {
@@ -68,10 +74,45 @@ public class RoomPortlet extends TemplatePortlet {
 		}
 	}
 
+	private String getListDataAsJson(int itemPerPage, int targetPage)
+			throws PortletException {
+		JSONObject ret = new JSONObject();
+		try {
+			/*
+			 * TODO imporove to use itemPerPage, targetPage parameters.
+			 */
+			// int start = itemPerPage * (targetPage - 1); List<Room> rooms =
+			// RoomLocalServiceUtil.getRooms(start, start + itemPerPage);
+			//
+			List<Room> rooms = RoomLocalServiceUtil.getRooms(0,
+					RoomLocalServiceUtil.getRoomsCount());
+			JSONArray jr = new JSONArray();
+			for (Iterator<Room> i = rooms.iterator(); i.hasNext();) {
+				JSONObject j = new JSONObject();
+				Room r = i.next();
+				j.put("id", r.getRoomId());
+				j.put("name", r.getName());
+				j.put("available", r.getAvailable());
+				j.put("capacity", r.getCapacity());
+				jr.put(j);
+			}
+			ret.put("data", jr);
+		} catch (Exception e) {
+			throw new PortletException(ERR_SEARCH_ROOM + ": " + e);
+		}
+		logger.debug("return json: " + ret);
+		return ret.toString();
+	}
+
 	private void deleteRoom(ResourceRequest req) throws PortletException {
 		try {
-			RoomLocalServiceUtil.deleteRoom(Integer.valueOf(req
-					.getParameter("roomId")));
+			int roomId = Integer.valueOf(req.getParameter("roomId"));
+
+			if (ReservationLocalServiceUtil.countByRoomId(roomId) > 0) {
+				throw new PortletException(ERR_DELETE_ROOM);
+			} else {
+				RoomLocalServiceUtil.deleteRoom(roomId);
+			}
 		} catch (Exception e) {
 			throw new PortletException(e);
 		}
@@ -115,5 +156,7 @@ public class RoomPortlet extends TemplatePortlet {
 	}
 
 	private static final String ERR_ILLEGAL_ROOM_SPECIFIED = "[ERROR] Room id is illegal.";
+	private static final String ERR_SEARCH_ROOM = "[ERROR] Room couldn't be searched.";
+	private static final String ERR_DELETE_ROOM = "[ERROR] Room couldn't be deleted.";
 
 }

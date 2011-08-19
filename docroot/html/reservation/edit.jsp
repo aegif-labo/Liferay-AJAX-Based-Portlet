@@ -90,7 +90,7 @@
 							<portlet:namespace/>_updateReservation();
 						});
 				A.get("#<portlet:namespace />cancel").on("click", function() {
-					<portlet:namespace/>_showJspInPanel('list-view');
+					<portlet:namespace/>_showListView();
 				});
 			});
 </script>

@@ -64,4 +64,8 @@ public class ReservationLocalServiceImpl extends
 				ResourceConstants.SCOPE_INDIVIDUAL, rsv.getPrimaryKey());
 		super.deleteReservation(rsv);
 	}
+
+	public int countByRoomId(int roomId) throws SystemException {
+		return reservationPersistence.findByRoomId(roomId).size();
+	}
 }

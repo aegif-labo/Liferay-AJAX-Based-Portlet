@@ -3,10 +3,8 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
-	<category name="jp.aegif.liferay.experiment.mryoshio.rr.service.permission">
+	<category name="jp.aegif.liferay.experiment.mryoshio.rr">
 		<priority value="DEBUG" />
 	</category>
-	 <category name="ext.com.liferay.portal.security.permission.AdvancedPermissionChecker"> <priority value="DEBUG" /> 
-		</category> 
-
+	
 </log4j:configuration>

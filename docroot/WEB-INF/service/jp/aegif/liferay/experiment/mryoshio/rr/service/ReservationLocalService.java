@@ -214,4 +214,7 @@ public interface ReservationLocalService {
 		long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByRoomId(int roomId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

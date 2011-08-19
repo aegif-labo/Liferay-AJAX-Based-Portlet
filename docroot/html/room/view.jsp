@@ -20,18 +20,54 @@
 <%@ include file="/html/common.jsp" %>
 <%@ include file="/html/room/js.jsp" %>
 
+<%
+    boolean hasAddPermission = permissionChecker.hasPermission(
+            scopeGroupId,
+            "jp.aegif.liferay.experiment.mryoshio.rr.model",
+            scopeGroupId, "ADD_ROOM");
+    boolean hasConfigurePermission = permissionChecker.hasPermission(
+            scopeGroupId, Group.class.getName(), scopeGroupId,
+            ActionKeys.PERMISSIONS);
+%>
+
 
 <script type="text/javascript">
 	AUI().ready('aui-panel', function(A) {
 		var panel = new A.Panel({
 			visible : false
 		}).render("#<portlet:namespace/>mainPanel");
-
-		<portlet:namespace/>_showJspInPanel("list-view");
+		<portlet:namespace/>_showListView();
 	});
 </script>
 
 
 <portlet:defineObjects />
 
+<aui:button-row>
+    <c:choose>
+        <c:when test='<%=hasAddPermission %>'>
+            <aui:button name="showAddRoom" value="room-show-add"></aui:button>
+        </c:when>
+    </c:choose>
+    <c:if test='<%= hasConfigurePermission %>'>
+        <liferay-security:permissionsURL
+            modelResource="jp.aegif.liferay.experiment.mryoshio.rr.model"
+            modelResourceDescription="room-top-level-actions"
+            resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+            var="permissionsURL" />
+        <aui:button value="permissions" onClick="<%= permissionsURL %>" />
+    </c:if>
+</aui:button-row>
 <div id="<portlet:namespace/>mainPanel"></div>
+
+<script type="text/javascript">
+    AUI().ready('aui-node', function(A) {
+        var button = A.get("#<portlet:namespace />showAddRoom");
+        if(button == null) {
+        } else {
+            A.get("#<portlet:namespace />showAddRoom").on("click", 
+                    function() { <portlet:namespace/>_showJspInPanel('add-view', 0); }
+            );
+        }
+    });
+</script>

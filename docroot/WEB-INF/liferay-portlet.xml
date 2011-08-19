@@ -10,7 +10,7 @@
 		<ajaxable>true</ajaxable>
 		<header-portlet-css>/css/portlet.css</header-portlet-css>
 		<footer-portlet-javascript></footer-portlet-javascript>
-		<css-class-wrapper>room-portlet</css-class-wrapper>
+		<css-class-wrapper>yui-skin-sam</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>reservation</portlet-name>
@@ -18,7 +18,7 @@
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/portlet.css</header-portlet-css>
 		<footer-portlet-javascript></footer-portlet-javascript>
-		<css-class-wrapper>reservation-portlet</css-class-wrapper>
+		<css-class-wrapper>yui-skin-sam</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

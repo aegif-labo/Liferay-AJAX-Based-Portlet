@@ -2,9 +2,10 @@ package jp.aegif.liferay.experiment.mryoshio.rr;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
@@ -12,10 +13,12 @@ import javax.portlet.ResourceResponse;
 import javax.servlet.ServletException;
 
 import jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation;
-import jp.aegif.liferay.experiment.mryoshio.rr.model.Room;
 import jp.aegif.liferay.experiment.mryoshio.rr.model.impl.ReservationImpl;
 import jp.aegif.liferay.experiment.mryoshio.rr.service.ReservationLocalServiceUtil;
 import jp.aegif.liferay.experiment.mryoshio.rr.service.RoomLocalServiceUtil;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -24,6 +27,7 @@ import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
@@ -53,9 +57,9 @@ public class ReservationPortlet extends TemplatePortlet {
 						PortalUtil.getHttpServletRequest(req),
 						PortalUtil.getHttpServletResponse(res), editJSP, false);
 			} else if ("list-view".equals(rid)) {
-				ajaxResponse = PortalUtil.renderPage(pbag.getServletContext(),
-						PortalUtil.getHttpServletRequest(req),
-						PortalUtil.getHttpServletResponse(res), listJSP, false);
+				ajaxResponse = getListDataAsJson(
+						Integer.parseInt(req.getParameter("itemPerPage")),
+						Integer.parseInt(req.getParameter("targetPage")));
 			} else if ("update-reservation".equals(rid)) {
 				updateReservation(req);
 			} else if ("delete-reservation".equals(rid)) {
@@ -70,6 +74,41 @@ public class ReservationPortlet extends TemplatePortlet {
 		} catch (ServletException e) {
 			throw new PortletException(e);
 		}
+	}
+
+	private String getListDataAsJson(int parseInt, int parseInt2)
+			throws PortletException {
+		JSONObject ret = new JSONObject();
+		try {
+			/*
+			 * TODO imporove to use itemPerPage, targetPage parameters.
+			 */
+			// int start = itemPerPage * (targetPage - 1); List<Reservation> reservations =
+			// ReservationLocalServiceUtil.getReservations(start, start + itemPerPage);
+			//
+			List<Reservation> reservations = ReservationLocalServiceUtil
+					.getReservations(
+							0,
+							ReservationLocalServiceUtil.getReservationsCount());
+			JSONArray jr = new JSONArray();
+			for (Iterator<Reservation> i = reservations.iterator(); i.hasNext();) {
+				JSONObject j = new JSONObject();
+				Reservation r = i.next();
+				j.put("id", r.getReservationId());
+				j.put("roomName", RoomLocalServiceUtil.getRoom(r.getRoomId())
+						.getName());
+				j.put("beginTime", formatter.format(r.getBeginTime()));
+				j.put("endTime", formatter.format(r.getEndTime()));
+				j.put("userName", UserLocalServiceUtil.getUser(r.getUserId())
+						.getScreenName());
+				jr.put(j);
+			}
+			ret.put("data", jr);
+		} catch (Exception e) {
+			throw new PortletException(ERR_SEARCH_RESERVATION + ": " + e);
+		}
+		logger.debug("return json: " + ret);
+		return ret.toString();
 	}
 
 	private void deleteReservation(ResourceRequest req) throws PortletException {
@@ -135,5 +174,7 @@ public class ReservationPortlet extends TemplatePortlet {
 	}
 
 	private static final String ERR_ILLEGAL_RESERVATION_SPECIFIED = "[ERROR] Reservation id is illegal.";
+	private static final String ERR_SEARCH_RESERVATION = "[ERROR] Reservation couldn't be searched.";
+	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 }

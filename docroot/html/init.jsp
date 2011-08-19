@@ -46,10 +46,4 @@
 	int ownerType = PortletKeys.PREFS_OWNER_TYPE_USER;
 	
 	prefs = portletPreferences;
-	/* if (renderRequest == null) {
-		prefs = PortletPreferencesLocalServiceUtil
-				.getPortletPreferences(ownerId,ownerType,plid,portletDisplay.getp);
-	} else {
-		prefs = renderRequest.getPreferences();
-	} */
 %>

@@ -230,6 +230,11 @@ public class ReservationLocalServiceWrapper implements ReservationLocalService {
 		_reservationLocalService.addReservation(rsv, userId);
 	}
 
+	public int countByRoomId(int roomId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _reservationLocalService.countByRoomId(roomId);
+	}
+
 	public ReservationLocalService getWrappedReservationLocalService() {
 		return _reservationLocalService;
 	}

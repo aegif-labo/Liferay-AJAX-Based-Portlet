@@ -425,6 +425,33 @@ public class ReservationLocalServiceClp implements ReservationLocalService {
 		}
 	}
 
+	public int countByRoomId(int roomId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_countByRoomIdMethodKey14,
+				roomId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -470,4 +497,6 @@ public class ReservationLocalServiceClp implements ReservationLocalService {
 			"addReservation",
 			jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation.class,
 			long.class);
+	private MethodKey _countByRoomIdMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"countByRoomId", int.class);
 }

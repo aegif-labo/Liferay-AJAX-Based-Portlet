@@ -236,6 +236,11 @@ public class ReservationLocalServiceUtil {
 		getService().addReservation(rsv, userId);
 	}
 
+	public static int countByRoomId(int roomId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByRoomId(roomId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

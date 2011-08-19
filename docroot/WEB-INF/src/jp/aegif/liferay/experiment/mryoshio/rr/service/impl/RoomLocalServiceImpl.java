@@ -14,15 +14,12 @@
 
 package jp.aegif.liferay.experiment.mryoshio.rr.service.impl;
 
+import jp.aegif.liferay.experiment.mryoshio.rr.model.Room;
+import jp.aegif.liferay.experiment.mryoshio.rr.service.base.RoomLocalServiceBaseImpl;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
-
-import jp.aegif.liferay.experiment.mryoshio.rr.model.Room;
-import jp.aegif.liferay.experiment.mryoshio.rr.model.RoomClp;
-import jp.aegif.liferay.experiment.mryoshio.rr.service.RoomLocalServiceUtil;
-import jp.aegif.liferay.experiment.mryoshio.rr.service.base.RoomLocalServiceBaseImpl;
 
 /**
  * The implementation of the room local service.
