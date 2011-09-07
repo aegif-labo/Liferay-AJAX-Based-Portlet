@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2011 Aegif Corporation. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -56,166 +56,158 @@ import java.util.List;
 
 /**
  * The persistence implementation for the reservation service.
- *
+ * 
  * <p>
- * Never modify or reference this class directly. Always use {@link ReservationUtil} to access the reservation persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+ * Never modify or reference this class directly. Always use
+ * {@link ReservationUtil} to access the reservation persistence. Modify
+ * <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
- *
+ * 
  * <p>
- * Caching information and settings can be found in <code>portal.properties</code>
+ * Caching information and settings can be found in
+ * <code>portal.properties</code>
  * </p>
- *
+ * 
  * @author ashitaba.yoshioka@aegif.jp
  * @see ReservationPersistence
  * @see ReservationUtil
  * @generated
  */
-public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
-	implements ReservationPersistence {
-	public static final String FINDER_CLASS_NAME_ENTITY = ReservationImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+public class ReservationPersistenceImpl extends
+		BasePersistenceImpl<Reservation> implements ReservationPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = ReservationImpl.class
+			.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY
+			+ ".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
+			"findByGroupId", new String[] { Long.class.getName(),
+
 			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByGroupId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_ROOMID = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_ROOMID = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByRoomId",
-			new String[] {
-				Integer.class.getName(),
-				
+			"findByRoomId", new String[] { Integer.class.getName(),
+
 			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_ROOMID = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_ROOMID = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByRoomId", new String[] { Integer.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_BEGINTIME = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_BEGINTIME = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByBeginTime",
-			new String[] {
-				Date.class.getName(),
-				
+			"findByBeginTime", new String[] { Date.class.getName(),
+
 			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_BEGINTIME = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_BEGINTIME = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByBeginTime", new String[] { Date.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_ENDTIME = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_ENDTIME = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByEndTime",
-			new String[] {
-				Date.class.getName(),
-				
+			"findByEndTime", new String[] { Date.class.getName(),
+
 			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_ENDTIME = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_ENDTIME = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByEndTime", new String[] { Date.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_G_R_U = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_G_R_U = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByG_R_U",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_R_U = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"findByG_R_U", new String[] { Long.class.getName(),
+					Integer.class.getName(), Long.class.getName(),
+
+					"java.lang.Integer", "java.lang.Integer",
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_R_U = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_R_U",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Long.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_G_R_B = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"countByG_R_U", new String[] { Long.class.getName(),
+					Integer.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_G_R_B = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByG_R_B",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Date.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_R_B = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"findByG_R_B", new String[] { Long.class.getName(),
+					Integer.class.getName(), Date.class.getName(),
+
+					"java.lang.Integer", "java.lang.Integer",
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_R_B = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_R_B",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Date.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_G_R_E = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"countByG_R_B", new String[] { Long.class.getName(),
+					Integer.class.getName(), Date.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_G_R_E = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByG_R_E",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Date.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_R_E = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"findByG_R_E", new String[] { Long.class.getName(),
+					Integer.class.getName(), Date.class.getName(),
+
+					"java.lang.Integer", "java.lang.Integer",
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_R_E = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_R_E",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Date.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_G_B_E = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"countByG_R_E", new String[] { Long.class.getName(),
+					Integer.class.getName(), Date.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_G_B_E = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByG_B_E",
-			new String[] {
-				Long.class.getName(), Date.class.getName(), Date.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_B_E = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"findByG_B_E", new String[] { Long.class.getName(),
+					Date.class.getName(), Date.class.getName(),
+
+					"java.lang.Integer", "java.lang.Integer",
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_B_E = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_B_E",
-			new String[] {
-				Long.class.getName(), Date.class.getName(), Date.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			"countByG_B_E", new String[] { Long.class.getName(),
+					Date.class.getName(), Date.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(
+			ReservationModelImpl.ENTITY_CACHE_ENABLED,
 			ReservationModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
 	/**
 	 * Caches the reservation in the entity cache if it is enabled.
-	 *
-	 * @param reservation the reservation to cache
+	 * 
+	 * @param reservation
+	 *            the reservation to cache
 	 */
 	public void cacheResult(Reservation reservation) {
-		EntityCacheUtil.putResult(ReservationModelImpl.ENTITY_CACHE_ENABLED,
-			ReservationImpl.class, reservation.getPrimaryKey(), reservation);
+		EntityCacheUtil
+				.putResult(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+						ReservationImpl.class, reservation.getPrimaryKey(),
+						reservation);
 	}
 
 	/**
 	 * Caches the reservations in the entity cache if it is enabled.
-	 *
-	 * @param reservations the reservations to cache
+	 * 
+	 * @param reservations
+	 *            the reservations to cache
 	 */
 	public void cacheResult(List<Reservation> reservations) {
 		for (Reservation reservation : reservations) {
 			if (EntityCacheUtil.getResult(
-						ReservationModelImpl.ENTITY_CACHE_ENABLED,
-						ReservationImpl.class, reservation.getPrimaryKey(), this) == null) {
+					ReservationModelImpl.ENTITY_CACHE_ENABLED,
+					ReservationImpl.class, reservation.getPrimaryKey(), this) == null) {
 				cacheResult(reservation);
 			}
 		}
@@ -223,9 +215,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Clears the cache for all reservations.
-	 *
+	 * 
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and
+	 * {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by
+	 * this method.
 	 * </p>
 	 */
 	public void clearCache() {
@@ -237,20 +231,24 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Clears the cache for the reservation.
-	 *
+	 * 
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and
+	 * {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by
+	 * this method.
 	 * </p>
 	 */
 	public void clearCache(Reservation reservation) {
 		EntityCacheUtil.removeResult(ReservationModelImpl.ENTITY_CACHE_ENABLED,
-			ReservationImpl.class, reservation.getPrimaryKey());
+				ReservationImpl.class, reservation.getPrimaryKey());
 	}
 
 	/**
-	 * Creates a new reservation with the primary key. Does not add the reservation to the database.
-	 *
-	 * @param reservationId the primary key for the new reservation
+	 * Creates a new reservation with the primary key. Does not add the
+	 * reservation to the database.
+	 * 
+	 * @param reservationId
+	 *            the primary key for the new reservation
 	 * @return the new reservation
 	 */
 	public Reservation create(int reservationId) {
@@ -263,60 +261,65 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Removes the reservation with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param primaryKey the primary key of the reservation to remove
+	 * Removes the reservation with the primary key from the database. Also
+	 * notifies the appropriate model listeners.
+	 * 
+	 * @param primaryKey
+	 *            the primary key of the reservation to remove
 	 * @return the reservation that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws com.liferay.portal.NoSuchModelException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Integer)primaryKey).intValue());
+			throws NoSuchModelException, SystemException {
+		return remove(((Integer) primaryKey).intValue());
 	}
 
 	/**
-	 * Removes the reservation with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param reservationId the primary key of the reservation to remove
+	 * Removes the reservation with the primary key from the database. Also
+	 * notifies the appropriate model listeners.
+	 * 
+	 * @param reservationId
+	 *            the primary key of the reservation to remove
 	 * @return the reservation that was removed
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation remove(int reservationId)
-		throws NoSuchReservationException, SystemException {
+			throws NoSuchReservationException, SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Reservation reservation = (Reservation)session.get(ReservationImpl.class,
-					new Integer(reservationId));
+			Reservation reservation = (Reservation) session.get(
+					ReservationImpl.class, new Integer(reservationId));
 
 			if (reservation == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + reservationId);
 				}
 
-				throw new NoSuchReservationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					reservationId);
+				throw new NoSuchReservationException(
+						_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + reservationId);
 			}
 
 			return remove(reservation);
-		}
-		catch (NoSuchReservationException nsee) {
+		} catch (NoSuchReservationException nsee) {
 			throw nsee;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation removeImpl(Reservation reservation)
-		throws SystemException {
+			throws SystemException {
 		reservation = toUnwrappedModel(reservation);
 
 		Session session = null;
@@ -336,25 +339,23 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			session.delete(reservation);
 
 			session.flush();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
 		EntityCacheUtil.removeResult(ReservationModelImpl.ENTITY_CACHE_ENABLED,
-			ReservationImpl.class, reservation.getPrimaryKey());
+				ReservationImpl.class, reservation.getPrimaryKey());
 
 		return reservation;
 	}
 
 	public Reservation updateImpl(
-		jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation reservation,
-		boolean merge) throws SystemException {
+			jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation reservation,
+			boolean merge) throws SystemException {
 		reservation = toUnwrappedModel(reservation);
 
 		Session session = null;
@@ -365,18 +366,18 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			BatchSessionUtil.update(session, reservation, merge);
 
 			reservation.setNew(false);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
-		EntityCacheUtil.putResult(ReservationModelImpl.ENTITY_CACHE_ENABLED,
-			ReservationImpl.class, reservation.getPrimaryKey(), reservation);
+		EntityCacheUtil
+				.putResult(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+						ReservationImpl.class, reservation.getPrimaryKey(),
+						reservation);
 
 		return reservation;
 	}
@@ -405,28 +406,37 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Finds the reservation with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the reservation to find
+	 * Finds the reservation with the primary key or throws a
+	 * {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * 
+	 * @param primaryKey
+	 *            the primary key of the reservation to find
 	 * @return the reservation
-	 * @throws com.liferay.portal.NoSuchModelException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws com.liferay.portal.NoSuchModelException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Integer)primaryKey).intValue());
+			throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Integer) primaryKey).intValue());
 	}
 
 	/**
-	 * Finds the reservation with the primary key or throws a {@link jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException} if it could not be found.
-	 *
-	 * @param reservationId the primary key of the reservation to find
+	 * Finds the reservation with the primary key or throws a
+	 * {@link jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException}
+	 * if it could not be found.
+	 * 
+	 * @param reservationId
+	 *            the primary key of the reservation to find
 	 * @return the reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByPrimaryKey(int reservationId)
-		throws NoSuchReservationException, SystemException {
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = fetchByPrimaryKey(reservationId);
 
 		if (reservation == null) {
@@ -434,35 +444,44 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + reservationId);
 			}
 
-			throw new NoSuchReservationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				reservationId);
+			throw new NoSuchReservationException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + reservationId);
 		}
 
 		return reservation;
 	}
 
 	/**
-	 * Finds the reservation with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the reservation to find
-	 * @return the reservation, or <code>null</code> if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * Finds the reservation with the primary key or returns <code>null</code>
+	 * if it could not be found.
+	 * 
+	 * @param primaryKey
+	 *            the primary key of the reservation to find
+	 * @return the reservation, or <code>null</code> if a reservation with the
+	 *         primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
-		return fetchByPrimaryKey(((Integer)primaryKey).intValue());
+			throws SystemException {
+		return fetchByPrimaryKey(((Integer) primaryKey).intValue());
 	}
 
 	/**
-	 * Finds the reservation with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param reservationId the primary key of the reservation to find
-	 * @return the reservation, or <code>null</code> if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * Finds the reservation with the primary key or returns <code>null</code>
+	 * if it could not be found.
+	 * 
+	 * @param reservationId
+	 *            the primary key of the reservation to find
+	 * @return the reservation, or <code>null</code> if a reservation with the
+	 *         primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation fetchByPrimaryKey(int reservationId)
-		throws SystemException {
-		Reservation reservation = (Reservation)EntityCacheUtil.getResult(ReservationModelImpl.ENTITY_CACHE_ENABLED,
+			throws SystemException {
+		Reservation reservation = (Reservation) EntityCacheUtil.getResult(
+				ReservationModelImpl.ENTITY_CACHE_ENABLED,
 				ReservationImpl.class, reservationId, this);
 
 		if (reservation == null) {
@@ -471,13 +490,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			try {
 				session = openSession();
 
-				reservation = (Reservation)session.get(ReservationImpl.class,
+				reservation = (Reservation) session.get(ReservationImpl.class,
 						new Integer(reservationId));
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (reservation != null) {
 					cacheResult(reservation);
 				}
@@ -491,59 +508,82 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Finds all the reservations where groupId = &#63;.
-	 *
-	 * @param groupId the group id to search with
+	 * 
+	 * @param groupId
+	 *            the group id to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
-	public List<Reservation> findByGroupId(long groupId)
-		throws SystemException {
-		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<Reservation> findByGroupId(long groupId) throws SystemException {
+		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				null);
 	}
 
 	/**
 	 * Finds a range of all the reservations where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByGroupId(long groupId, int start, int end)
-		throws SystemException {
+			throws SystemException {
 		return findByGroupId(groupId, start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the reservations where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_GROUPID, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -554,10 +594,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							3 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(3);
 				}
 
@@ -567,7 +606,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -582,13 +621,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				qPos.add(groupId);
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -596,7 +633,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_GROUPID,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -607,20 +644,30 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Finds the first reservation in the ordered set where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -634,28 +681,37 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
 	 * Finds the last reservation in the ordered set where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByGroupId(groupId);
 
 		List<Reservation> list = findByGroupId(groupId, count - 1, count,
@@ -672,29 +728,40 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where groupId = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where groupId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param groupId the group id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param groupId
+	 *            the group id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByGroupId_PrevAndNext(int reservationId,
-		long groupId, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			long groupId, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -713,25 +780,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByGroupId_PrevAndNext(Session session,
-		Reservation reservation, long groupId,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, long groupId,
+			OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -753,16 +817,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -777,16 +838,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -820,59 +878,89 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the reservations where groupId = &#63;.
-	 *
-	 * @param groupId the group id to search with
+	 * Filters by the user's permissions and finds all the reservations where
+	 * groupId = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
 	 * @return the matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByGroupId(long groupId)
-		throws SystemException {
+			throws SystemException {
 		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the reservations where groupId = &#63;.
-	 *
+	 * Filters by the user's permissions and finds a range of all the
+	 * reservations where groupId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @return the range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @return the range of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByGroupId(long groupId, int start,
-		int end) throws SystemException {
+			int end) throws SystemException {
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the reservations where groupId = &#63;.
-	 *
+	 * Filters by the user's permissions and finds an ordered range of all the
+	 * reservations where groupId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
-	 * @return the ordered range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
+	 * @return the ordered range of matching reservations that the user has
+	 *         permission to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+			int end, OrderByComparator orderByComparator)
+			throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -885,10 +973,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
+				query = new StringBundler(
+						3 + (orderByComparator.getOrderByFields().length * 3));
+			} else {
 				query = new StringBundler(3);
 			}
 
@@ -898,16 +985,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+						orderByComparator);
 			}
 
 			else {
 				query.append(ReservationModelImpl.ORDER_BY_JPQL);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -917,22 +1004,23 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			qPos.add(groupId);
 
-			return (List<Reservation>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
+			return (List<Reservation>) QueryUtil.list(q, getDialect(), start,
+					end);
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
 	 * Finds all the reservations where roomId = &#63;.
-	 *
-	 * @param roomId the room id to search with
+	 * 
+	 * @param roomId
+	 *            the room id to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByRoomId(int roomId) throws SystemException {
 		return findByRoomId(roomId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -940,47 +1028,68 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Finds a range of all the reservations where roomId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param roomId the room id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param roomId
+	 *            the room id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByRoomId(int roomId, int start, int end)
-		throws SystemException {
+			throws SystemException {
 		return findByRoomId(roomId, start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the reservations where roomId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param roomId the room id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param roomId
+	 *            the room id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByRoomId(int roomId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				roomId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { roomId,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ROOMID,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_ROOMID, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -991,10 +1100,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							3 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(3);
 				}
 
@@ -1004,7 +1112,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -1019,13 +1127,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				qPos.add(roomId);
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -1033,7 +1139,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ROOMID,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -1044,20 +1150,30 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Finds the first reservation in the ordered set where roomId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param roomId the room id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param roomId
+	 *            the room id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByRoomId_First(int roomId,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByRoomId(roomId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -1071,28 +1187,37 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
 	 * Finds the last reservation in the ordered set where roomId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param roomId the room id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param roomId
+	 *            the room id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByRoomId_Last(int roomId,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByRoomId(roomId);
 
 		List<Reservation> list = findByRoomId(roomId, count - 1, count,
@@ -1109,29 +1234,40 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where roomId = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where roomId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param roomId the room id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param roomId
+	 *            the room id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByRoomId_PrevAndNext(int reservationId,
-		int roomId, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			int roomId, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -1150,25 +1286,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByRoomId_PrevAndNext(Session session,
-		Reservation reservation, int roomId,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, int roomId,
+			OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -1190,16 +1323,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -1214,16 +1344,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -1257,68 +1384,91 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
 	 * Finds all the reservations where beginTime = &#63;.
-	 *
-	 * @param beginTime the begin time to search with
+	 * 
+	 * @param beginTime
+	 *            the begin time to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByBeginTime(Date beginTime)
-		throws SystemException {
+			throws SystemException {
 		return findByBeginTime(beginTime, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+				null);
 	}
 
 	/**
 	 * Finds a range of all the reservations where beginTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param beginTime the begin time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByBeginTime(Date beginTime, int start, int end)
-		throws SystemException {
+			throws SystemException {
 		return findByBeginTime(beginTime, start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the reservations where beginTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param beginTime the begin time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByBeginTime(Date beginTime, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				beginTime,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			int end, OrderByComparator orderByComparator)
+			throws SystemException {
+		Object[] finderArgs = new Object[] { beginTime,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_BEGINTIME,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_BEGINTIME, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -1329,10 +1479,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							3 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(3);
 				}
 
@@ -1340,14 +1489,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (beginTime == null) {
 					query.append(_FINDER_COLUMN_BEGINTIME_BEGINTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_BEGINTIME_BEGINTIME_2);
 				}
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -1364,13 +1512,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(beginTime));
 				}
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -1378,7 +1524,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_BEGINTIME,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -1389,20 +1535,30 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Finds the first reservation in the ordered set where beginTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param beginTime the begin time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByBeginTime_First(Date beginTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByBeginTime(beginTime, 0, 1,
 				orderByComparator);
 
@@ -1417,28 +1573,37 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
 	 * Finds the last reservation in the ordered set where beginTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param beginTime the begin time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByBeginTime_Last(Date beginTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByBeginTime(beginTime);
 
 		List<Reservation> list = findByBeginTime(beginTime, count - 1, count,
@@ -1455,29 +1620,40 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where beginTime = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where beginTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param beginTime the begin time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByBeginTime_PrevAndNext(int reservationId,
-		Date beginTime, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			Date beginTime, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -1496,25 +1672,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					beginTime, orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByBeginTime_PrevAndNext(Session session,
-		Reservation reservation, Date beginTime,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, Date beginTime,
+			OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -1522,8 +1695,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (beginTime == null) {
 			query.append(_FINDER_COLUMN_BEGINTIME_BEGINTIME_1);
-		}
-		else {
+		} else {
 			query.append(_FINDER_COLUMN_BEGINTIME_BEGINTIME_2);
 		}
 
@@ -1541,16 +1713,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -1565,16 +1734,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -1610,67 +1776,89 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
 	 * Finds all the reservations where endTime = &#63;.
-	 *
-	 * @param endTime the end time to search with
+	 * 
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
-	public List<Reservation> findByEndTime(Date endTime)
-		throws SystemException {
-		return findByEndTime(endTime, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<Reservation> findByEndTime(Date endTime) throws SystemException {
+		return findByEndTime(endTime, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				null);
 	}
 
 	/**
 	 * Finds a range of all the reservations where endTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByEndTime(Date endTime, int start, int end)
-		throws SystemException {
+			throws SystemException {
 		return findByEndTime(endTime, start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the reservations where endTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByEndTime(Date endTime, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				endTime,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { endTime,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ENDTIME,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_ENDTIME, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -1681,10 +1869,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							3 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(3);
 				}
 
@@ -1692,14 +1879,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (endTime == null) {
 					query.append(_FINDER_COLUMN_ENDTIME_ENDTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_ENDTIME_ENDTIME_2);
 				}
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -1716,13 +1902,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(endTime));
 				}
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -1730,7 +1914,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ENDTIME,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -1741,20 +1925,30 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Finds the first reservation in the ordered set where endTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByEndTime_First(Date endTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByEndTime(endTime, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -1768,28 +1962,37 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
 	 * Finds the last reservation in the ordered set where endTime = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByEndTime_Last(Date endTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByEndTime(endTime);
 
 		List<Reservation> list = findByEndTime(endTime, count - 1, count,
@@ -1806,29 +2009,40 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where endTime = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByEndTime_PrevAndNext(int reservationId,
-		Date endTime, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			Date endTime, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -1847,25 +2061,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByEndTime_PrevAndNext(Session session,
-		Reservation reservation, Date endTime,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, Date endTime,
+			OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -1873,8 +2084,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (endTime == null) {
 			query.append(_FINDER_COLUMN_ENDTIME_ENDTIME_1);
-		}
-		else {
+		} else {
 			query.append(_FINDER_COLUMN_ENDTIME_ENDTIME_2);
 		}
 
@@ -1892,16 +2102,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -1916,16 +2123,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -1961,75 +2165,106 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
-	 * Finds all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
+	 * Finds all the reservations where groupId = &#63; and roomId = &#63; and
+	 * userId = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_U(long groupId, int roomId, long userId)
-		throws SystemException {
+			throws SystemException {
 		return findByG_R_U(groupId, roomId, userId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
+	 * Finds a range of all the reservations where groupId = &#63; and roomId =
+	 * &#63; and userId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_U(long groupId, int roomId, long userId,
-		int start, int end) throws SystemException {
+			int start, int end) throws SystemException {
 		return findByG_R_U(groupId, roomId, userId, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
+	 * Finds an ordered range of all the reservations where groupId = &#63; and
+	 * roomId = &#63; and userId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_U(long groupId, int roomId, long userId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, roomId, userId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			int start, int end, OrderByComparator orderByComparator)
+			throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, roomId, userId,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_R_U,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_G_R_U, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -2040,10 +2275,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							5 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(5);
 				}
 
@@ -2057,7 +2291,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -2076,13 +2310,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				qPos.add(userId);
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -2090,7 +2322,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_R_U,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -2100,23 +2332,36 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Finds the first reservation in the ordered set where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
+	 * Finds the first reservation in the ordered set where groupId = &#63; and
+	 * roomId = &#63; and userId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_R_U_First(long groupId, int roomId, long userId,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByG_R_U(groupId, roomId, userId, 0, 1,
 				orderByComparator);
 
@@ -2137,30 +2382,42 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the last reservation in the ordered set where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
+	 * Finds the last reservation in the ordered set where groupId = &#63; and
+	 * roomId = &#63; and userId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_R_U_Last(long groupId, int roomId, long userId,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByG_R_U(groupId, roomId, userId);
 
 		List<Reservation> list = findByG_R_U(groupId, roomId, userId,
@@ -2183,32 +2440,45 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where groupId = &#63; and roomId = &#63; and userId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByG_R_U_PrevAndNext(int reservationId,
-		long groupId, int roomId, long userId,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			long groupId, int roomId, long userId,
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -2227,25 +2497,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					roomId, userId, orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByG_R_U_PrevAndNext(Session session,
-		Reservation reservation, long groupId, int roomId, long userId,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, long groupId, int roomId, long userId,
+			OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -2271,16 +2538,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -2295,16 +2559,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -2342,69 +2603,104 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
+	 * Filters by the user's permissions and finds all the reservations where
+	 * groupId = &#63; and roomId = &#63; and userId = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
 	 * @return the matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_U(long groupId, int roomId,
-		long userId) throws SystemException {
+			long userId) throws SystemException {
 		return filterFindByG_R_U(groupId, roomId, userId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
+	 * Filters by the user's permissions and finds a range of all the
+	 * reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @return the range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @return the range of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_U(long groupId, int roomId,
-		long userId, int start, int end) throws SystemException {
+			long userId, int start, int end) throws SystemException {
 		return filterFindByG_R_U(groupId, roomId, userId, start, end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
+	 * Filters by the user's permissions and finds an ordered range of all the
+	 * reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
-	 * @return the ordered range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
+	 * @return the ordered range of matching reservations that the user has
+	 *         permission to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_U(long groupId, int roomId,
-		long userId, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+			long userId, int start, int end, OrderByComparator orderByComparator)
+			throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_R_U(groupId, roomId, userId, start, end,
-				orderByComparator);
+					orderByComparator);
 		}
 
 		Session session = null;
@@ -2415,10 +2711,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
+				query = new StringBundler(
+						5 + (orderByComparator.getOrderByFields().length * 3));
+			} else {
 				query = new StringBundler(5);
 			}
 
@@ -2432,16 +2727,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+						orderByComparator);
 			}
 
 			else {
 				query.append(ReservationModelImpl.ORDER_BY_JPQL);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -2455,79 +2750,110 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			qPos.add(userId);
 
-			return (List<Reservation>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
+			return (List<Reservation>) QueryUtil.list(q, getDialect(), start,
+					end);
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
-	 * Finds all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
+	 * Finds all the reservations where groupId = &#63; and roomId = &#63; and
+	 * beginTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_B(long groupId, int roomId,
-		Date beginTime) throws SystemException {
+			Date beginTime) throws SystemException {
 		return findByG_R_B(groupId, roomId, beginTime, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
+	 * Finds a range of all the reservations where groupId = &#63; and roomId =
+	 * &#63; and beginTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_B(long groupId, int roomId,
-		Date beginTime, int start, int end) throws SystemException {
+			Date beginTime, int start, int end) throws SystemException {
 		return findByG_R_B(groupId, roomId, beginTime, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
+	 * Finds an ordered range of all the reservations where groupId = &#63; and
+	 * roomId = &#63; and beginTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_B(long groupId, int roomId,
-		Date beginTime, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, roomId, beginTime,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			Date beginTime, int start, int end,
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, roomId, beginTime,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_R_B,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_G_R_B, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -2538,10 +2864,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							5 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(5);
 				}
 
@@ -2553,14 +2878,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (beginTime == null) {
 					query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_2);
 				}
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -2581,13 +2905,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(beginTime));
 				}
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -2595,7 +2917,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_R_B,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -2605,23 +2927,36 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Finds the first reservation in the ordered set where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
+	 * Finds the first reservation in the ordered set where groupId = &#63; and
+	 * roomId = &#63; and beginTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_R_B_First(long groupId, int roomId,
-		Date beginTime, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			Date beginTime, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByG_R_B(groupId, roomId, beginTime, 0, 1,
 				orderByComparator);
 
@@ -2642,30 +2977,42 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the last reservation in the ordered set where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
+	 * Finds the last reservation in the ordered set where groupId = &#63; and
+	 * roomId = &#63; and beginTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_R_B_Last(long groupId, int roomId,
-		Date beginTime, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			Date beginTime, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByG_R_B(groupId, roomId, beginTime);
 
 		List<Reservation> list = findByG_R_B(groupId, roomId, beginTime,
@@ -2688,32 +3035,46 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where groupId = &#63; and roomId = &#63; and beginTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByG_R_B_PrevAndNext(int reservationId,
-		long groupId, int roomId, Date beginTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			long groupId, int roomId, Date beginTime,
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -2732,25 +3093,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					roomId, beginTime, orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByG_R_B_PrevAndNext(Session session,
-		Reservation reservation, long groupId, int roomId, Date beginTime,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, long groupId, int roomId, Date beginTime,
+			OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -2762,8 +3120,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (beginTime == null) {
 			query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_1);
-		}
-		else {
+		} else {
 			query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_2);
 		}
 
@@ -2781,16 +3138,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -2805,16 +3159,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -2854,69 +3205,106 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
+	 * Filters by the user's permissions and finds all the reservations where
+	 * groupId = &#63; and roomId = &#63; and beginTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
 	 * @return the matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_B(long groupId, int roomId,
-		Date beginTime) throws SystemException {
+			Date beginTime) throws SystemException {
 		return filterFindByG_R_B(groupId, roomId, beginTime, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
+	 * Filters by the user's permissions and finds a range of all the
+	 * reservations where groupId = &#63; and roomId = &#63; and beginTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @return the range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @return the range of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_B(long groupId, int roomId,
-		Date beginTime, int start, int end) throws SystemException {
+			Date beginTime, int start, int end) throws SystemException {
 		return filterFindByG_R_B(groupId, roomId, beginTime, start, end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
+	 * Filters by the user's permissions and finds an ordered range of all the
+	 * reservations where groupId = &#63; and roomId = &#63; and beginTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
-	 * @return the ordered range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
+	 * @return the ordered range of matching reservations that the user has
+	 *         permission to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_B(long groupId, int roomId,
-		Date beginTime, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+			Date beginTime, int start, int end,
+			OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_R_B(groupId, roomId, beginTime, start, end,
-				orderByComparator);
+					orderByComparator);
 		}
 
 		Session session = null;
@@ -2927,10 +3315,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
+				query = new StringBundler(
+						5 + (orderByComparator.getOrderByFields().length * 3));
+			} else {
 				query = new StringBundler(5);
 			}
 
@@ -2942,23 +3329,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (beginTime == null) {
 				query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_2);
 			}
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+						orderByComparator);
 			}
 
 			else {
 				query.append(ReservationModelImpl.ORDER_BY_JPQL);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -2974,79 +3360,110 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				qPos.add(CalendarUtil.getTimestamp(beginTime));
 			}
 
-			return (List<Reservation>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
+			return (List<Reservation>) QueryUtil.list(q, getDialect(), start,
+					end);
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
-	 * Finds all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
+	 * Finds all the reservations where groupId = &#63; and roomId = &#63; and
+	 * endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_E(long groupId, int roomId, Date endTime)
-		throws SystemException {
+			throws SystemException {
 		return findByG_R_E(groupId, roomId, endTime, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
+	 * Finds a range of all the reservations where groupId = &#63; and roomId =
+	 * &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_E(long groupId, int roomId,
-		Date endTime, int start, int end) throws SystemException {
+			Date endTime, int start, int end) throws SystemException {
 		return findByG_R_E(groupId, roomId, endTime, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
+	 * Finds an ordered range of all the reservations where groupId = &#63; and
+	 * roomId = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_R_E(long groupId, int roomId,
-		Date endTime, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, roomId, endTime,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			Date endTime, int start, int end,
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, roomId, endTime,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_R_E,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_G_R_E, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -3057,10 +3474,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							5 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(5);
 				}
 
@@ -3072,14 +3488,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (endTime == null) {
 					query.append(_FINDER_COLUMN_G_R_E_ENDTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_R_E_ENDTIME_2);
 				}
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -3100,13 +3515,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(endTime));
 				}
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -3114,7 +3527,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_R_E,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -3124,23 +3537,36 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Finds the first reservation in the ordered set where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
+	 * Finds the first reservation in the ordered set where groupId = &#63; and
+	 * roomId = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_R_E_First(long groupId, int roomId,
-		Date endTime, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			Date endTime, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByG_R_E(groupId, roomId, endTime, 0, 1,
 				orderByComparator);
 
@@ -3161,30 +3587,42 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the last reservation in the ordered set where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
+	 * Finds the last reservation in the ordered set where groupId = &#63; and
+	 * roomId = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_R_E_Last(long groupId, int roomId, Date endTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByG_R_E(groupId, roomId, endTime);
 
 		List<Reservation> list = findByG_R_E(groupId, roomId, endTime,
@@ -3207,32 +3645,45 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where groupId = &#63; and roomId = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByG_R_E_PrevAndNext(int reservationId,
-		long groupId, int roomId, Date endTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			long groupId, int roomId, Date endTime,
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -3251,25 +3702,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					roomId, endTime, orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByG_R_E_PrevAndNext(Session session,
-		Reservation reservation, long groupId, int roomId, Date endTime,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, long groupId, int roomId, Date endTime,
+			OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -3281,8 +3729,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (endTime == null) {
 			query.append(_FINDER_COLUMN_G_R_E_ENDTIME_1);
-		}
-		else {
+		} else {
 			query.append(_FINDER_COLUMN_G_R_E_ENDTIME_2);
 		}
 
@@ -3300,16 +3747,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -3324,16 +3768,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -3373,69 +3814,106 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
+	 * Filters by the user's permissions and finds all the reservations where
+	 * groupId = &#63; and roomId = &#63; and endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_E(long groupId, int roomId,
-		Date endTime) throws SystemException {
+			Date endTime) throws SystemException {
 		return filterFindByG_R_E(groupId, roomId, endTime, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
+	 * Filters by the user's permissions and finds a range of all the
+	 * reservations where groupId = &#63; and roomId = &#63; and endTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @return the range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @return the range of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_E(long groupId, int roomId,
-		Date endTime, int start, int end) throws SystemException {
+			Date endTime, int start, int end) throws SystemException {
 		return filterFindByG_R_E(groupId, roomId, endTime, start, end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
+	 * Filters by the user's permissions and finds an ordered range of all the
+	 * reservations where groupId = &#63; and roomId = &#63; and endTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
-	 * @return the ordered range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
+	 * @return the ordered range of matching reservations that the user has
+	 *         permission to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_R_E(long groupId, int roomId,
-		Date endTime, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+			Date endTime, int start, int end,
+			OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_R_E(groupId, roomId, endTime, start, end,
-				orderByComparator);
+					orderByComparator);
 		}
 
 		Session session = null;
@@ -3446,10 +3924,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
+				query = new StringBundler(
+						5 + (orderByComparator.getOrderByFields().length * 3));
+			} else {
 				query = new StringBundler(5);
 			}
 
@@ -3461,23 +3938,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (endTime == null) {
 				query.append(_FINDER_COLUMN_G_R_E_ENDTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_R_E_ENDTIME_2);
 			}
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+						orderByComparator);
 			}
 
 			else {
 				query.append(ReservationModelImpl.ORDER_BY_JPQL);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -3493,79 +3969,110 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				qPos.add(CalendarUtil.getTimestamp(endTime));
 			}
 
-			return (List<Reservation>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
+			return (List<Reservation>) QueryUtil.list(q, getDialect(), start,
+					end);
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
-	 * Finds all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
+	 * Finds all the reservations where groupId = &#63; and beginTime = &#63;
+	 * and endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_B_E(long groupId, Date beginTime,
-		Date endTime) throws SystemException {
+			Date endTime) throws SystemException {
 		return findByG_B_E(groupId, beginTime, endTime, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
+	 * Finds a range of all the reservations where groupId = &#63; and beginTime
+	 * = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_B_E(long groupId, Date beginTime,
-		Date endTime, int start, int end) throws SystemException {
+			Date endTime, int start, int end) throws SystemException {
 		return findByG_B_E(groupId, beginTime, endTime, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
+	 * Finds an ordered range of all the reservations where groupId = &#63; and
+	 * beginTime = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findByG_B_E(long groupId, Date beginTime,
-		Date endTime, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, beginTime, endTime,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			Date endTime, int start, int end,
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, beginTime, endTime,
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_B_E,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_G_B_E, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -3576,10 +4083,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							5 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(5);
 				}
 
@@ -3589,21 +4095,19 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (beginTime == null) {
 					query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_2);
 				}
 
 				if (endTime == null) {
 					query.append(_FINDER_COLUMN_G_B_E_ENDTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_B_E_ENDTIME_2);
 				}
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -3626,13 +4130,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(endTime));
 				}
 
-				list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 						start, end);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
@@ -3640,7 +4142,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_B_E,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -3650,23 +4152,36 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Finds the first reservation in the ordered set where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
+	 * Finds the first reservation in the ordered set where groupId = &#63; and
+	 * beginTime = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_B_E_First(long groupId, Date beginTime,
-		Date endTime, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			Date endTime, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		List<Reservation> list = findByG_B_E(groupId, beginTime, endTime, 0, 1,
 				orderByComparator);
 
@@ -3687,30 +4202,42 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the last reservation in the ordered set where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
+	 * Finds the last reservation in the ordered set where groupId = &#63; and
+	 * beginTime = &#63; and endTime = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a matching reservation could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a matching reservation could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation findByG_B_E_Last(long groupId, Date beginTime,
-		Date endTime, OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			Date endTime, OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		int count = countByG_B_E(groupId, beginTime, endTime);
 
 		List<Reservation> list = findByG_B_E(groupId, beginTime, endTime,
@@ -3733,32 +4260,46 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchReservationException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the reservations before and after the current reservation in the ordered set where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
+	 * Finds the reservations before and after the current reservation in the
+	 * ordered set where groupId = &#63; and beginTime = &#63; and endTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param reservationId the primary key of the current reservation
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param reservationId
+	 *            the primary key of the current reservation
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next reservation
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException if a reservation with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchReservationException
+	 *             if a reservation with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Reservation[] findByG_B_E_PrevAndNext(int reservationId,
-		long groupId, Date beginTime, Date endTime,
-		OrderByComparator orderByComparator)
-		throws NoSuchReservationException, SystemException {
+			long groupId, Date beginTime, Date endTime,
+			OrderByComparator orderByComparator)
+			throws NoSuchReservationException, SystemException {
 		Reservation reservation = findByPrimaryKey(reservationId);
 
 		Session session = null;
@@ -3777,25 +4318,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					beginTime, endTime, orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Reservation getByG_B_E_PrevAndNext(Session session,
-		Reservation reservation, long groupId, Date beginTime, Date endTime,
-		OrderByComparator orderByComparator, boolean previous) {
+			Reservation reservation, long groupId, Date beginTime,
+			Date endTime, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -3805,15 +4343,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (beginTime == null) {
 			query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_1);
-		}
-		else {
+		} else {
 			query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_2);
 		}
 
 		if (endTime == null) {
 			query.append(_FINDER_COLUMN_G_B_E_ENDTIME_1);
-		}
-		else {
+		} else {
 			query.append(_FINDER_COLUMN_G_B_E_ENDTIME_2);
 		}
 
@@ -3831,16 +4367,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -3855,16 +4388,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -3906,69 +4436,106 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
+	 * Filters by the user's permissions and finds all the reservations where
+	 * groupId = &#63; and beginTime = &#63; and endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_B_E(long groupId, Date beginTime,
-		Date endTime) throws SystemException {
+			Date endTime) throws SystemException {
 		return filterFindByG_B_E(groupId, beginTime, endTime,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
+	 * Filters by the user's permissions and finds a range of all the
+	 * reservations where groupId = &#63; and beginTime = &#63; and endTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @return the range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @return the range of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_B_E(long groupId, Date beginTime,
-		Date endTime, int start, int end) throws SystemException {
+			Date endTime, int start, int end) throws SystemException {
 		return filterFindByG_B_E(groupId, beginTime, endTime, start, end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
+	 * Filters by the user's permissions and finds an ordered range of all the
+	 * reservations where groupId = &#63; and beginTime = &#63; and endTime =
+	 * &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
-	 * @return the ordered range of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
+	 * @return the ordered range of matching reservations that the user has
+	 *         permission to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> filterFindByG_B_E(long groupId, Date beginTime,
-		Date endTime, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+			Date endTime, int start, int end,
+			OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_B_E(groupId, beginTime, endTime, start, end,
-				orderByComparator);
+					orderByComparator);
 		}
 
 		Session session = null;
@@ -3979,10 +4546,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
+				query = new StringBundler(
+						5 + (orderByComparator.getOrderByFields().length * 3));
+			} else {
 				query = new StringBundler(5);
 			}
 
@@ -3992,30 +4558,28 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (beginTime == null) {
 				query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_2);
 			}
 
 			if (endTime == null) {
 				query.append(_FINDER_COLUMN_G_B_E_ENDTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_B_E_ENDTIME_2);
 			}
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+						orderByComparator);
 			}
 
 			else {
 				query.append(ReservationModelImpl.ORDER_BY_JPQL);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -4033,21 +4597,21 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				qPos.add(CalendarUtil.getTimestamp(endTime));
 			}
 
-			return (List<Reservation>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
+			return (List<Reservation>) QueryUtil.list(q, getDialect(), start,
+					end);
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
 	 * Finds all the reservations.
-	 *
+	 * 
 	 * @return the reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -4055,43 +4619,61 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Finds a range of all the reservations.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
+	 * 
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
 	 * @return the range of reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
-	public List<Reservation> findAll(int start, int end)
-		throws SystemException {
+	public List<Reservation> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the reservations.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param start the lower bound of the range of reservations to return
-	 * @param end the upper bound of the range of reservations to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param start
+	 *            the lower bound of the range of reservations to return
+	 * @param end
+	 *            the upper bound of the range of reservations to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Reservation> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { String.valueOf(start),
+				String.valueOf(end), String.valueOf(orderByComparator) };
 
-		List<Reservation> list = (List<Reservation>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
-				finderArgs, this);
+		List<Reservation> list = (List<Reservation>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_ALL, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -4103,44 +4685,42 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				String sql = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(2 +
-							(orderByComparator.getOrderByFields().length * 3));
+					query = new StringBundler(
+							2 + (orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_RESERVATION);
 
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 
 					sql = query.toString();
-				}
-				else {
-					sql = _SQL_SELECT_RESERVATION.concat(ReservationModelImpl.ORDER_BY_JPQL);
+				} else {
+					sql = _SQL_SELECT_RESERVATION
+							.concat(ReservationModelImpl.ORDER_BY_JPQL);
 				}
 
 				Query q = session.createQuery(sql);
 
 				if (orderByComparator == null) {
-					list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+					list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 							start, end, false);
 
 					Collections.sort(list);
-				}
-				else {
-					list = (List<Reservation>)QueryUtil.list(q, getDialect(),
+				} else {
+					list = (List<Reservation>) QueryUtil.list(q, getDialect(),
 							start, end);
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Reservation>();
 				}
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
 
 				closeSession(session);
 			}
@@ -4151,9 +4731,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Removes all the reservations where groupId = &#63; from the database.
-	 *
-	 * @param groupId the group id to search with
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (Reservation reservation : findByGroupId(groupId)) {
@@ -4163,9 +4745,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Removes all the reservations where roomId = &#63; from the database.
-	 *
-	 * @param roomId the room id to search with
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param roomId
+	 *            the room id to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByRoomId(int roomId) throws SystemException {
 		for (Reservation reservation : findByRoomId(roomId)) {
@@ -4175,9 +4759,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Removes all the reservations where beginTime = &#63; from the database.
-	 *
-	 * @param beginTime the begin time to search with
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByBeginTime(Date beginTime) throws SystemException {
 		for (Reservation reservation : findByBeginTime(beginTime)) {
@@ -4187,9 +4773,11 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Removes all the reservations where endTime = &#63; from the database.
-	 *
-	 * @param endTime the end time to search with
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param endTime
+	 *            the end time to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByEndTime(Date endTime) throws SystemException {
 		for (Reservation reservation : findByEndTime(endTime)) {
@@ -4198,60 +4786,80 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Removes all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63; from the database.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @throws SystemException if a system exception occurred
+	 * Removes all the reservations where groupId = &#63; and roomId = &#63; and
+	 * userId = &#63; from the database.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByG_R_U(long groupId, int roomId, long userId)
-		throws SystemException {
+			throws SystemException {
 		for (Reservation reservation : findByG_R_U(groupId, roomId, userId)) {
 			remove(reservation);
 		}
 	}
 
 	/**
-	 * Removes all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63; from the database.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @throws SystemException if a system exception occurred
+	 * Removes all the reservations where groupId = &#63; and roomId = &#63; and
+	 * beginTime = &#63; from the database.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByG_R_B(long groupId, int roomId, Date beginTime)
-		throws SystemException {
+			throws SystemException {
 		for (Reservation reservation : findByG_R_B(groupId, roomId, beginTime)) {
 			remove(reservation);
 		}
 	}
 
 	/**
-	 * Removes all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63; from the database.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @throws SystemException if a system exception occurred
+	 * Removes all the reservations where groupId = &#63; and roomId = &#63; and
+	 * endTime = &#63; from the database.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByG_R_E(long groupId, int roomId, Date endTime)
-		throws SystemException {
+			throws SystemException {
 		for (Reservation reservation : findByG_R_E(groupId, roomId, endTime)) {
 			remove(reservation);
 		}
 	}
 
 	/**
-	 * Removes all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63; from the database.
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @throws SystemException if a system exception occurred
+	 * Removes all the reservations where groupId = &#63; and beginTime = &#63;
+	 * and endTime = &#63; from the database.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByG_B_E(long groupId, Date beginTime, Date endTime)
-		throws SystemException {
+			throws SystemException {
 		for (Reservation reservation : findByG_B_E(groupId, beginTime, endTime)) {
 			remove(reservation);
 		}
@@ -4259,8 +4867,9 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Removes all the reservations from the database.
-	 *
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeAll() throws SystemException {
 		for (Reservation reservation : findAll()) {
@@ -4270,16 +4879,18 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Counts all the reservations where groupId = &#63;.
-	 *
-	 * @param groupId the group id to search with
+	 * 
+	 * @param groupId
+	 *            the group id to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByGroupId(long groupId) throws SystemException {
 		Object[] finderArgs = new Object[] { groupId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_GROUPID, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4301,18 +4912,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				qPos.add(groupId);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -4322,11 +4931,15 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the reservations where groupId = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @return the number of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * Filters by the user's permissions and counts all the reservations where
+	 * groupId = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @return the number of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int filterCountByGroupId(long groupId) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
@@ -4344,43 +4957,43 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(groupId);
 
-			Long count = (Long)q.uniqueResult();
+			Long count = (Long) q.uniqueResult();
 
 			return count.intValue();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
 	 * Counts all the reservations where roomId = &#63;.
-	 *
-	 * @param roomId the room id to search with
+	 * 
+	 * @param roomId
+	 *            the room id to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByRoomId(int roomId) throws SystemException {
 		Object[] finderArgs = new Object[] { roomId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ROOMID,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_ROOMID, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4402,18 +5015,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				qPos.add(roomId);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ROOMID,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -4424,16 +5035,18 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Counts all the reservations where beginTime = &#63;.
-	 *
-	 * @param beginTime the begin time to search with
+	 * 
+	 * @param beginTime
+	 *            the begin time to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByBeginTime(Date beginTime) throws SystemException {
 		Object[] finderArgs = new Object[] { beginTime };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_BEGINTIME,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_BEGINTIME, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4447,8 +5060,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (beginTime == null) {
 					query.append(_FINDER_COLUMN_BEGINTIME_BEGINTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_BEGINTIME_BEGINTIME_2);
 				}
 
@@ -4462,18 +5074,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(beginTime));
 				}
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_BEGINTIME,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -4484,16 +5094,18 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 	/**
 	 * Counts all the reservations where endTime = &#63;.
-	 *
-	 * @param endTime the end time to search with
+	 * 
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByEndTime(Date endTime) throws SystemException {
 		Object[] finderArgs = new Object[] { endTime };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ENDTIME,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_ENDTIME, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4507,8 +5119,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (endTime == null) {
 					query.append(_FINDER_COLUMN_ENDTIME_ENDTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_ENDTIME_ENDTIME_2);
 				}
 
@@ -4522,18 +5133,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(endTime));
 				}
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ENDTIME,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -4543,20 +5152,25 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Counts all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
+	 * Counts all the reservations where groupId = &#63; and roomId = &#63; and
+	 * userId = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByG_R_U(long groupId, int roomId, long userId)
-		throws SystemException {
+			throws SystemException {
 		Object[] finderArgs = new Object[] { groupId, roomId, userId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_R_U,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_G_R_U, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4586,18 +5200,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				qPos.add(userId);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_R_U,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -4607,16 +5219,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the reservations where groupId = &#63; and roomId = &#63; and userId = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param userId the user id to search with
-	 * @return the number of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * Filters by the user's permissions and counts all the reservations where
+	 * groupId = &#63; and roomId = &#63; and userId = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param userId
+	 *            the user id to search with
+	 * @return the number of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int filterCountByG_R_U(long groupId, int roomId, long userId)
-		throws SystemException {
+			throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_R_U(groupId, roomId, userId);
 		}
@@ -4636,14 +5254,14 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			query.append(_FINDER_COLUMN_G_R_U_USERID_2);
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4653,33 +5271,36 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			qPos.add(userId);
 
-			Long count = (Long)q.uniqueResult();
+			Long count = (Long) q.uniqueResult();
 
 			return count.intValue();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
-	 * Counts all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
+	 * Counts all the reservations where groupId = &#63; and roomId = &#63; and
+	 * beginTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByG_R_B(long groupId, int roomId, Date beginTime)
-		throws SystemException {
+			throws SystemException {
 		Object[] finderArgs = new Object[] { groupId, roomId, beginTime };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_R_B,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_G_R_B, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4697,8 +5318,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (beginTime == null) {
 					query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_2);
 				}
 
@@ -4716,18 +5336,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(beginTime));
 				}
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_R_B,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -4737,16 +5355,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the reservations where groupId = &#63; and roomId = &#63; and beginTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param beginTime the begin time to search with
-	 * @return the number of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * Filters by the user's permissions and counts all the reservations where
+	 * groupId = &#63; and roomId = &#63; and beginTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @return the number of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int filterCountByG_R_B(long groupId, int roomId, Date beginTime)
-		throws SystemException {
+			throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_R_B(groupId, roomId, beginTime);
 		}
@@ -4766,19 +5390,18 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (beginTime == null) {
 				query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_R_B_BEGINTIME_2);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4790,33 +5413,36 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				qPos.add(CalendarUtil.getTimestamp(beginTime));
 			}
 
-			Long count = (Long)q.uniqueResult();
+			Long count = (Long) q.uniqueResult();
 
 			return count.intValue();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
-	 * Counts all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
+	 * Counts all the reservations where groupId = &#63; and roomId = &#63; and
+	 * endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByG_R_E(long groupId, int roomId, Date endTime)
-		throws SystemException {
+			throws SystemException {
 		Object[] finderArgs = new Object[] { groupId, roomId, endTime };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_R_E,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_G_R_E, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4834,8 +5460,7 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (endTime == null) {
 					query.append(_FINDER_COLUMN_G_R_E_ENDTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_R_E_ENDTIME_2);
 				}
 
@@ -4853,18 +5478,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(endTime));
 				}
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_R_E,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -4874,16 +5497,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the reservations where groupId = &#63; and roomId = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param roomId the room id to search with
-	 * @param endTime the end time to search with
-	 * @return the number of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * Filters by the user's permissions and counts all the reservations where
+	 * groupId = &#63; and roomId = &#63; and endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param roomId
+	 *            the room id to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @return the number of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int filterCountByG_R_E(long groupId, int roomId, Date endTime)
-		throws SystemException {
+			throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_R_E(groupId, roomId, endTime);
 		}
@@ -4903,19 +5532,18 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (endTime == null) {
 				query.append(_FINDER_COLUMN_G_R_E_ENDTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_R_E_ENDTIME_2);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4927,33 +5555,36 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				qPos.add(CalendarUtil.getTimestamp(endTime));
 			}
 
-			Long count = (Long)q.uniqueResult();
+			Long count = (Long) q.uniqueResult();
 
 			return count.intValue();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
-	 * Counts all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
+	 * Counts all the reservations where groupId = &#63; and beginTime = &#63;
+	 * and endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
 	 * @return the number of matching reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByG_B_E(long groupId, Date beginTime, Date endTime)
-		throws SystemException {
+			throws SystemException {
 		Object[] finderArgs = new Object[] { groupId, beginTime, endTime };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_B_E,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_G_B_E, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4969,15 +5600,13 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				if (beginTime == null) {
 					query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_2);
 				}
 
 				if (endTime == null) {
 					query.append(_FINDER_COLUMN_G_B_E_ENDTIME_1);
-				}
-				else {
+				} else {
 					query.append(_FINDER_COLUMN_G_B_E_ENDTIME_2);
 				}
 
@@ -4997,18 +5626,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 					qPos.add(CalendarUtil.getTimestamp(endTime));
 				}
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_B_E,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -5018,16 +5645,22 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the reservations where groupId = &#63; and beginTime = &#63; and endTime = &#63;.
-	 *
-	 * @param groupId the group id to search with
-	 * @param beginTime the begin time to search with
-	 * @param endTime the end time to search with
-	 * @return the number of matching reservations that the user has permission to view
-	 * @throws SystemException if a system exception occurred
+	 * Filters by the user's permissions and counts all the reservations where
+	 * groupId = &#63; and beginTime = &#63; and endTime = &#63;.
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param beginTime
+	 *            the begin time to search with
+	 * @param endTime
+	 *            the end time to search with
+	 * @return the number of matching reservations that the user has permission
+	 *         to view
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int filterCountByG_B_E(long groupId, Date beginTime, Date endTime)
-		throws SystemException {
+			throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_B_E(groupId, beginTime, endTime);
 		}
@@ -5045,26 +5678,24 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 			if (beginTime == null) {
 				query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_B_E_BEGINTIME_2);
 			}
 
 			if (endTime == null) {
 				query.append(_FINDER_COLUMN_G_B_E_ENDTIME_1);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_G_B_E_ENDTIME_2);
 			}
 
-			String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-					Reservation.class.getName(), _FILTER_COLUMN_PK,
-					_FILTER_COLUMN_USERID, groupId);
+			String sql = InlineSQLHelperUtil.replacePermissionCheck(
+					query.toString(), Reservation.class.getName(),
+					_FILTER_COLUMN_PK, _FILTER_COLUMN_USERID, groupId);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+					com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -5078,28 +5709,27 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 				qPos.add(CalendarUtil.getTimestamp(endTime));
 			}
 
-			Long count = (Long)q.uniqueResult();
+			Long count = (Long) q.uniqueResult();
 
 			return count.intValue();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	/**
 	 * Counts all the reservations.
-	 *
+	 * 
 	 * @return the number of reservations
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				finderArgs, this);
 
 		if (count == null) {
@@ -5110,18 +5740,16 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 
 				Query q = session.createQuery(_SQL_COUNT_RESERVATION);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+						count);
 
 				closeSession(session);
 			}
@@ -5134,22 +5762,23 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	 * Initializes the reservation persistence.
 	 */
 	public void afterPropertiesSet() {
-		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
-					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation")));
+		String[] listenerClassNames = StringUtil
+				.split(GetterUtil.getString(com.liferay.util.service.ServiceProps
+						.get("value.object.listener.jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation")));
 
 		if (listenerClassNames.length > 0) {
 			try {
 				List<ModelListener<Reservation>> listenersList = new ArrayList<ModelListener<Reservation>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<Reservation>)InstanceFactory.newInstance(
-							listenerClassName));
+					listenersList
+							.add((ModelListener<Reservation>) InstanceFactory
+									.newInstance(listenerClassName));
 				}
 
-				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
-			}
-			catch (Exception e) {
+				listeners = listenersList
+						.toArray(new ModelListener[listenersList.size()]);
+			} catch (Exception e) {
 				_log.error(e);
 			}
 		}
@@ -5197,5 +5826,6 @@ public class ReservationPersistenceImpl extends BasePersistenceImpl<Reservation>
 	private static final String _ORDER_BY_ENTITY_ALIAS = "reservation.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Reservation exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Reservation exists with the key {";
-	private static Log _log = LogFactoryUtil.getLog(ReservationPersistenceImpl.class);
+	private static Log _log = LogFactoryUtil
+			.getLog(ReservationPersistenceImpl.class);
 }

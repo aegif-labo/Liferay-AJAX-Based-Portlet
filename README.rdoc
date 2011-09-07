@@ -1,0 +1,11 @@
+= Lifery Ajax Based Portlet (Room & Reservation)
+author:: mryoshio (ashitaba.yoshioka _at_ aegif.jp)
+created:: 2011/08/05
+license:: GNU LGPL v2.1 or later
+
+= about
+- Liferay社[https://www.liferay.com/about-us] が提供するLiferay Portalのプラグインポートレットです。
+
+
+
+

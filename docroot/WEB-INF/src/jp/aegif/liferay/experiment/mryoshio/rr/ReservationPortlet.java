@@ -1,3 +1,16 @@
+/**
+ * Copyright (c) 2011 Aegif Corporation. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 package jp.aegif.liferay.experiment.mryoshio.rr;
 
 import java.io.IOException;
@@ -83,12 +96,13 @@ public class ReservationPortlet extends TemplatePortlet {
 			/*
 			 * TODO imporove to use itemPerPage, targetPage parameters.
 			 */
-			// int start = itemPerPage * (targetPage - 1); List<Reservation> reservations =
-			// ReservationLocalServiceUtil.getReservations(start, start + itemPerPage);
+			// int start = itemPerPage * (targetPage - 1); List<Reservation>
+			// reservations =
+			// ReservationLocalServiceUtil.getReservations(start, start +
+			// itemPerPage);
 			//
 			List<Reservation> reservations = ReservationLocalServiceUtil
-					.getReservations(
-							0,
+					.getReservations(0,
 							ReservationLocalServiceUtil.getReservationsCount());
 			JSONArray jr = new JSONArray();
 			for (Iterator<Reservation> i = reservations.iterator(); i.hasNext();) {
@@ -175,6 +189,7 @@ public class ReservationPortlet extends TemplatePortlet {
 
 	private static final String ERR_ILLEGAL_RESERVATION_SPECIFIED = "[ERROR] Reservation id is illegal.";
 	private static final String ERR_SEARCH_RESERVATION = "[ERROR] Reservation couldn't be searched.";
-	private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static SimpleDateFormat formatter = new SimpleDateFormat(
+			"yyyy/MM/dd HH:mm:ss");
 
 }

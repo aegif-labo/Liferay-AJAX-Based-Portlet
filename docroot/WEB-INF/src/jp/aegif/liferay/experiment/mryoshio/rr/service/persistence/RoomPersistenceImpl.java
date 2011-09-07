@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2011 Aegif Corporation. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -52,87 +52,92 @@ import java.util.List;
 
 /**
  * The persistence implementation for the room service.
- *
+ * 
  * <p>
- * Never modify or reference this class directly. Always use {@link RoomUtil} to access the room persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+ * Never modify or reference this class directly. Always use {@link RoomUtil} to
+ * access the room persistence. Modify <code>service.xml</code> and rerun
+ * ServiceBuilder to regenerate this class.
  * </p>
- *
+ * 
  * <p>
- * Caching information and settings can be found in <code>portal.properties</code>
+ * Caching information and settings can be found in
+ * <code>portal.properties</code>
  * </p>
- *
+ * 
  * @author ashitaba.yoshioka@aegif.jp
  * @see RoomPersistence
  * @see RoomUtil
  * @generated
  */
-public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
-	implements RoomPersistence {
-	public static final String FINDER_CLASS_NAME_ENTITY = RoomImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+public class RoomPersistenceImpl extends BasePersistenceImpl<Room> implements
+		RoomPersistence {
+	public static final String FINDER_CLASS_NAME_ENTITY = RoomImpl.class
+			.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY
+			+ ".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
+			"findByGroupId", new String[] { Long.class.getName(),
+
 			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByGroupId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_NAME = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_NAME = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByName",
-			new String[] {
-				String.class.getName(),
-				
+			"findByName", new String[] { String.class.getName(),
+
 			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_NAME = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_NAME = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByName", new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_AVAILABLE = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_AVAILABLE = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByAvailable",
-			new String[] {
-				Boolean.class.getName(),
-				
+			"findByAvailable", new String[] { Boolean.class.getName(),
+
 			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_AVAILABLE = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+					"com.liferay.portal.kernel.util.OrderByComparator" });
+	public static final FinderPath FINDER_PATH_COUNT_BY_AVAILABLE = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByAvailable", new String[] { Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(RoomModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(
+			RoomModelImpl.ENTITY_CACHE_ENABLED,
 			RoomModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
 	/**
 	 * Caches the room in the entity cache if it is enabled.
-	 *
-	 * @param room the room to cache
+	 * 
+	 * @param room
+	 *            the room to cache
 	 */
 	public void cacheResult(Room room) {
 		EntityCacheUtil.putResult(RoomModelImpl.ENTITY_CACHE_ENABLED,
-			RoomImpl.class, room.getPrimaryKey(), room);
+				RoomImpl.class, room.getPrimaryKey(), room);
 	}
 
 	/**
 	 * Caches the rooms in the entity cache if it is enabled.
-	 *
-	 * @param rooms the rooms to cache
+	 * 
+	 * @param rooms
+	 *            the rooms to cache
 	 */
 	public void cacheResult(List<Room> rooms) {
 		for (Room room : rooms) {
 			if (EntityCacheUtil.getResult(RoomModelImpl.ENTITY_CACHE_ENABLED,
-						RoomImpl.class, room.getPrimaryKey(), this) == null) {
+					RoomImpl.class, room.getPrimaryKey(), this) == null) {
 				cacheResult(room);
 			}
 		}
@@ -140,9 +145,11 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Clears the cache for all rooms.
-	 *
+	 * 
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and
+	 * {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by
+	 * this method.
 	 * </p>
 	 */
 	public void clearCache() {
@@ -154,20 +161,24 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Clears the cache for the room.
-	 *
+	 * 
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and
+	 * {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by
+	 * this method.
 	 * </p>
 	 */
 	public void clearCache(Room room) {
 		EntityCacheUtil.removeResult(RoomModelImpl.ENTITY_CACHE_ENABLED,
-			RoomImpl.class, room.getPrimaryKey());
+				RoomImpl.class, room.getPrimaryKey());
 	}
 
 	/**
-	 * Creates a new room with the primary key. Does not add the room to the database.
-	 *
-	 * @param roomId the primary key for the new room
+	 * Creates a new room with the primary key. Does not add the room to the
+	 * database.
+	 * 
+	 * @param roomId
+	 *            the primary key for the new room
 	 * @return the new room
 	 */
 	public Room create(int roomId) {
@@ -180,25 +191,33 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 	}
 
 	/**
-	 * Removes the room with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param primaryKey the primary key of the room to remove
+	 * Removes the room with the primary key from the database. Also notifies
+	 * the appropriate model listeners.
+	 * 
+	 * @param primaryKey
+	 *            the primary key of the room to remove
 	 * @return the room that was removed
-	 * @throws com.liferay.portal.NoSuchModelException if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws com.liferay.portal.NoSuchModelException
+	 *             if a room with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
-	public Room remove(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return remove(((Integer)primaryKey).intValue());
+	public Room remove(Serializable primaryKey) throws NoSuchModelException,
+			SystemException {
+		return remove(((Integer) primaryKey).intValue());
 	}
 
 	/**
-	 * Removes the room with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param roomId the primary key of the room to remove
+	 * Removes the room with the primary key from the database. Also notifies
+	 * the appropriate model listeners.
+	 * 
+	 * @param roomId
+	 *            the primary key of the room to remove
 	 * @return the room that was removed
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a room with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room remove(int roomId) throws NoSuchRoomException, SystemException {
 		Session session = null;
@@ -206,26 +225,23 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 		try {
 			session = openSession();
 
-			Room room = (Room)session.get(RoomImpl.class, new Integer(roomId));
+			Room room = (Room) session.get(RoomImpl.class, new Integer(roomId));
 
 			if (room == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + roomId);
 				}
 
-				throw new NoSuchRoomException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					roomId);
+				throw new NoSuchRoomException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY
+						+ roomId);
 			}
 
 			return remove(room);
-		}
-		catch (NoSuchRoomException nsee) {
+		} catch (NoSuchRoomException nsee) {
 			throw nsee;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
@@ -250,25 +266,23 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			session.delete(room);
 
 			session.flush();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
 		EntityCacheUtil.removeResult(RoomModelImpl.ENTITY_CACHE_ENABLED,
-			RoomImpl.class, room.getPrimaryKey());
+				RoomImpl.class, room.getPrimaryKey());
 
 		return room;
 	}
 
 	public Room updateImpl(
-		jp.aegif.liferay.experiment.mryoshio.rr.model.Room room, boolean merge)
-		throws SystemException {
+			jp.aegif.liferay.experiment.mryoshio.rr.model.Room room,
+			boolean merge) throws SystemException {
 		room = toUnwrappedModel(room);
 
 		Session session = null;
@@ -279,18 +293,16 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			BatchSessionUtil.update(session, room, merge);
 
 			room.setNew(false);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
 		EntityCacheUtil.putResult(RoomModelImpl.ENTITY_CACHE_ENABLED,
-			RoomImpl.class, room.getPrimaryKey(), room);
+				RoomImpl.class, room.getPrimaryKey(), room);
 
 		return room;
 	}
@@ -317,28 +329,37 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 	}
 
 	/**
-	 * Finds the room with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the room to find
+	 * Finds the room with the primary key or throws a
+	 * {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 * 
+	 * @param primaryKey
+	 *            the primary key of the room to find
 	 * @return the room
-	 * @throws com.liferay.portal.NoSuchModelException if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws com.liferay.portal.NoSuchModelException
+	 *             if a room with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchModelException, SystemException {
-		return findByPrimaryKey(((Integer)primaryKey).intValue());
+			throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Integer) primaryKey).intValue());
 	}
 
 	/**
-	 * Finds the room with the primary key or throws a {@link jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException} if it could not be found.
-	 *
-	 * @param roomId the primary key of the room to find
+	 * Finds the room with the primary key or throws a
+	 * {@link jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException} if it
+	 * could not be found.
+	 * 
+	 * @param roomId
+	 *            the primary key of the room to find
 	 * @return the room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a room with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
-	public Room findByPrimaryKey(int roomId)
-		throws NoSuchRoomException, SystemException {
+	public Room findByPrimaryKey(int roomId) throws NoSuchRoomException,
+			SystemException {
 		Room room = fetchByPrimaryKey(roomId);
 
 		if (room == null) {
@@ -346,35 +367,44 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + roomId);
 			}
 
-			throw new NoSuchRoomException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				roomId);
+			throw new NoSuchRoomException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY
+					+ roomId);
 		}
 
 		return room;
 	}
 
 	/**
-	 * Finds the room with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param primaryKey the primary key of the room to find
-	 * @return the room, or <code>null</code> if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * Finds the room with the primary key or returns <code>null</code> if it
+	 * could not be found.
+	 * 
+	 * @param primaryKey
+	 *            the primary key of the room to find
+	 * @return the room, or <code>null</code> if a room with the primary key
+	 *         could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
-		return fetchByPrimaryKey(((Integer)primaryKey).intValue());
+			throws SystemException {
+		return fetchByPrimaryKey(((Integer) primaryKey).intValue());
 	}
 
 	/**
-	 * Finds the room with the primary key or returns <code>null</code> if it could not be found.
-	 *
-	 * @param roomId the primary key of the room to find
-	 * @return the room, or <code>null</code> if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * Finds the room with the primary key or returns <code>null</code> if it
+	 * could not be found.
+	 * 
+	 * @param roomId
+	 *            the primary key of the room to find
+	 * @return the room, or <code>null</code> if a room with the primary key
+	 *         could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room fetchByPrimaryKey(int roomId) throws SystemException {
-		Room room = (Room)EntityCacheUtil.getResult(RoomModelImpl.ENTITY_CACHE_ENABLED,
-				RoomImpl.class, roomId, this);
+		Room room = (Room) EntityCacheUtil.getResult(
+				RoomModelImpl.ENTITY_CACHE_ENABLED, RoomImpl.class, roomId,
+				this);
 
 		if (room == null) {
 			Session session = null;
@@ -382,12 +412,10 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			try {
 				session = openSession();
 
-				room = (Room)session.get(RoomImpl.class, new Integer(roomId));
-			}
-			catch (Exception e) {
+				room = (Room) session.get(RoomImpl.class, new Integer(roomId));
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (room != null) {
 					cacheResult(room);
 				}
@@ -401,58 +429,82 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Finds all the rooms where groupId = &#63;.
-	 *
-	 * @param groupId the group id to search with
+	 * 
+	 * @param groupId
+	 *            the group id to search with
 	 * @return the matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByGroupId(long groupId) throws SystemException {
-		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				null);
 	}
 
 	/**
 	 * Finds a range of all the rooms where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
 	 * @return the range of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByGroupId(long groupId, int start, int end)
-		throws SystemException {
+			throws SystemException {
 		return findByGroupId(groupId, start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the rooms where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId,
 
-		List<Room> list = (List<Room>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Room> list = (List<Room>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_GROUPID, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -463,10 +515,9 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							3 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(3);
 				}
 
@@ -476,7 +527,7 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -491,12 +542,10 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				qPos.add(groupId);
 
-				list = (List<Room>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
+				list = (List<Room>) QueryUtil.list(q, getDialect(), start, end);
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Room>();
 				}
@@ -504,7 +553,7 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_GROUPID,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -515,20 +564,30 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Finds the first room in the ordered set where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a matching room could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a matching room could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		List<Room> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -542,28 +601,37 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchRoomException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
 	 * Finds the last room in the ordered set where groupId = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param groupId the group id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a matching room could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a matching room could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		int count = countByGroupId(groupId);
 
 		List<Room> list = findByGroupId(groupId, count - 1, count,
@@ -580,29 +648,40 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchRoomException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the rooms before and after the current room in the ordered set where groupId = &#63;.
-	 *
+	 * Finds the rooms before and after the current room in the ordered set
+	 * where groupId = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param roomId the primary key of the current room
-	 * @param groupId the group id to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param roomId
+	 *            the primary key of the current room
+	 * @param groupId
+	 *            the group id to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a room with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room[] findByGroupId_PrevAndNext(int roomId, long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		Room room = findByPrimaryKey(roomId);
 
 		Session session = null;
@@ -621,24 +700,21 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 					orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Room getByGroupId_PrevAndNext(Session session, Room room,
-		long groupId, OrderByComparator orderByComparator, boolean previous) {
+			long groupId, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -660,16 +736,13 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -684,16 +757,13 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -727,18 +797,19 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
 	 * Finds all the rooms where name = &#63;.
-	 *
-	 * @param name the name to search with
+	 * 
+	 * @param name
+	 *            the name to search with
 	 * @return the matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByName(String name) throws SystemException {
 		return findByName(name, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -746,47 +817,68 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Finds a range of all the rooms where name = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param name the name to search with
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
+	 * 
+	 * @param name
+	 *            the name to search with
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
 	 * @return the range of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByName(String name, int start, int end)
-		throws SystemException {
+			throws SystemException {
 		return findByName(name, start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the rooms where name = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param name the name to search with
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param name
+	 *            the name to search with
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByName(String name, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				name,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { name,
 
-		List<Room> list = (List<Room>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_NAME,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Room> list = (List<Room>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_NAME, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -797,10 +889,9 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							3 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(3);
 				}
 
@@ -808,19 +899,17 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				if (name == null) {
 					query.append(_FINDER_COLUMN_NAME_NAME_1);
-				}
-				else {
+				} else {
 					if (name.equals(StringPool.BLANK)) {
 						query.append(_FINDER_COLUMN_NAME_NAME_3);
-					}
-					else {
+					} else {
 						query.append(_FINDER_COLUMN_NAME_NAME_2);
 					}
 				}
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -837,12 +926,10 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 					qPos.add(name);
 				}
 
-				list = (List<Room>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
+				list = (List<Room>) QueryUtil.list(q, getDialect(), start, end);
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Room>();
 				}
@@ -850,7 +937,7 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_NAME, finderArgs,
-					list);
+						list);
 
 				closeSession(session);
 			}
@@ -861,20 +948,30 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Finds the first room in the ordered set where name = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param name the name to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param name
+	 *            the name to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a matching room could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a matching room could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room findByName_First(String name,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		List<Room> list = findByName(name, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -888,27 +985,36 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchRoomException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
 	 * Finds the last room in the ordered set where name = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param name the name to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param name
+	 *            the name to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a matching room could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a matching room could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room findByName_Last(String name, OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			throws NoSuchRoomException, SystemException {
 		int count = countByName(name);
 
 		List<Room> list = findByName(name, count - 1, count, orderByComparator);
@@ -924,29 +1030,40 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchRoomException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the rooms before and after the current room in the ordered set where name = &#63;.
-	 *
+	 * Finds the rooms before and after the current room in the ordered set
+	 * where name = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param roomId the primary key of the current room
-	 * @param name the name to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param roomId
+	 *            the primary key of the current room
+	 * @param name
+	 *            the name to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a room with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room[] findByName_PrevAndNext(int roomId, String name,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		Room room = findByPrimaryKey(roomId);
 
 		Session session = null;
@@ -965,24 +1082,21 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 					orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Room getByName_PrevAndNext(Session session, Room room,
-		String name, OrderByComparator orderByComparator, boolean previous) {
+			String name, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -990,12 +1104,10 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 		if (name == null) {
 			query.append(_FINDER_COLUMN_NAME_NAME_1);
-		}
-		else {
+		} else {
 			if (name.equals(StringPool.BLANK)) {
 				query.append(_FINDER_COLUMN_NAME_NAME_3);
-			}
-			else {
+			} else {
 				query.append(_FINDER_COLUMN_NAME_NAME_2);
 			}
 		}
@@ -1014,16 +1126,13 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -1038,16 +1147,13 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -1083,68 +1189,89 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
 	 * Finds all the rooms where available = &#63;.
-	 *
-	 * @param available the available to search with
+	 * 
+	 * @param available
+	 *            the available to search with
 	 * @return the matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
-	public List<Room> findByAvailable(boolean available)
-		throws SystemException {
+	public List<Room> findByAvailable(boolean available) throws SystemException {
 		return findByAvailable(available, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+				null);
 	}
 
 	/**
 	 * Finds a range of all the rooms where available = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param available the available to search with
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
+	 * 
+	 * @param available
+	 *            the available to search with
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
 	 * @return the range of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByAvailable(boolean available, int start, int end)
-		throws SystemException {
+			throws SystemException {
 		return findByAvailable(available, start, end, null);
 	}
 
 	/**
 	 * Finds an ordered range of all the rooms where available = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param available the available to search with
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param available
+	 *            the available to search with
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findByAvailable(boolean available, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				available,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { available,
 
-		List<Room> list = (List<Room>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_AVAILABLE,
-				finderArgs, this);
+		String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator) };
+
+		List<Room> list = (List<Room>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_BY_AVAILABLE, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -1155,10 +1282,9 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				StringBundler query = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
+					query = new StringBundler(
+							3 + (orderByComparator.getOrderByFields().length * 3));
+				} else {
 					query = new StringBundler(3);
 				}
 
@@ -1168,7 +1294,7 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 				}
 
 				else {
@@ -1183,12 +1309,10 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				qPos.add(available);
 
-				list = (List<Room>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
+				list = (List<Room>) QueryUtil.list(q, getDialect(), start, end);
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Room>();
 				}
@@ -1196,7 +1320,7 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				cacheResult(list);
 
 				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_AVAILABLE,
-					finderArgs, list);
+						finderArgs, list);
 
 				closeSession(session);
 			}
@@ -1207,20 +1331,30 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Finds the first room in the ordered set where available = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param available the available to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param available
+	 *            the available to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the first matching room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a matching room could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a matching room could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room findByAvailable_First(boolean available,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		List<Room> list = findByAvailable(available, 0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
@@ -1234,28 +1368,37 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchRoomException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
 	 * Finds the last room in the ordered set where available = &#63;.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param available the available to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param available
+	 *            the available to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the last matching room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a matching room could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a matching room could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room findByAvailable_Last(boolean available,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		int count = countByAvailable(available);
 
 		List<Room> list = findByAvailable(available, count - 1, count,
@@ -1272,29 +1415,40 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
 			throw new NoSuchRoomException(msg.toString());
-		}
-		else {
+		} else {
 			return list.get(0);
 		}
 	}
 
 	/**
-	 * Finds the rooms before and after the current room in the ordered set where available = &#63;.
-	 *
+	 * Finds the rooms before and after the current room in the ordered set
+	 * where available = &#63;.
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param roomId the primary key of the current room
-	 * @param available the available to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * 
+	 * @param roomId
+	 *            the primary key of the current room
+	 * @param available
+	 *            the available to search with
+	 * @param orderByComparator
+	 *            the comparator to order the set by
 	 * @return the previous, current, and next room
-	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException if a room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws jp.aegif.liferay.experiment.mryoshio.rr.NoSuchRoomException
+	 *             if a room with the primary key could not be found
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public Room[] findByAvailable_PrevAndNext(int roomId, boolean available,
-		OrderByComparator orderByComparator)
-		throws NoSuchRoomException, SystemException {
+			OrderByComparator orderByComparator) throws NoSuchRoomException,
+			SystemException {
 		Room room = findByPrimaryKey(roomId);
 
 		Session session = null;
@@ -1313,24 +1467,22 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 					orderByComparator, false);
 
 			return array;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw processException(e);
-		}
-		finally {
+		} finally {
 			closeSession(session);
 		}
 	}
 
 	protected Room getByAvailable_PrevAndNext(Session session, Room room,
-		boolean available, OrderByComparator orderByComparator, boolean previous) {
+			boolean available, OrderByComparator orderByComparator,
+			boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
+			query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 6));
+		} else {
 			query = new StringBundler(3);
 		}
 
@@ -1352,16 +1504,13 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(WHERE_GREATER_THAN);
-					}
-					else {
+					} else {
 						query.append(WHERE_LESSER_THAN);
 					}
 				}
@@ -1376,16 +1525,13 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				if ((i + 1) < orderByFields.length) {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC_HAS_NEXT);
 					}
-				}
-				else {
+				} else {
 					if (orderByComparator.isAscending() ^ previous) {
 						query.append(ORDER_BY_ASC);
-					}
-					else {
+					} else {
 						query.append(ORDER_BY_DESC);
 					}
 				}
@@ -1419,17 +1565,17 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 		if (list.size() == 2) {
 			return list.get(1);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	/**
 	 * Finds all the rooms.
-	 *
+	 * 
 	 * @return the rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -1437,15 +1583,25 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Finds a range of all the rooms.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
+	 * 
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
 	 * @return the range of rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
@@ -1453,26 +1609,35 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Finds an ordered range of all the rooms.
-	 *
+	 * 
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * Useful when paginating results. Returns a maximum of
+	 * <code>end - start</code> instances. <code>start</code> and
+	 * <code>end</code> are not primary keys, they are indexes in the result
+	 * set. Thus, <code>0</code> refers to the first result in the set. Setting
+	 * both <code>start</code> and <code>end</code> to
+	 * {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return
+	 * the full result set.
 	 * </p>
-	 *
-	 * @param start the lower bound of the range of rooms to return
-	 * @param end the upper bound of the range of rooms to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * 
+	 * @param start
+	 *            the lower bound of the range of rooms to return
+	 * @param end
+	 *            the upper bound of the range of rooms to return (not
+	 *            inclusive)
+	 * @param orderByComparator
+	 *            the comparator to order the results by
 	 * @return the ordered range of rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public List<Room> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+			OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] { String.valueOf(start),
+				String.valueOf(end), String.valueOf(orderByComparator) };
 
-		List<Room> list = (List<Room>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
-				finderArgs, this);
+		List<Room> list = (List<Room>) FinderCacheUtil.getResult(
+				FINDER_PATH_FIND_ALL, finderArgs, this);
 
 		if (list == null) {
 			Session session = null;
@@ -1484,44 +1649,41 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 				String sql = null;
 
 				if (orderByComparator != null) {
-					query = new StringBundler(2 +
-							(orderByComparator.getOrderByFields().length * 3));
+					query = new StringBundler(
+							2 + (orderByComparator.getOrderByFields().length * 3));
 
 					query.append(_SQL_SELECT_ROOM);
 
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
+							orderByComparator);
 
 					sql = query.toString();
-				}
-				else {
+				} else {
 					sql = _SQL_SELECT_ROOM.concat(RoomModelImpl.ORDER_BY_JPQL);
 				}
 
 				Query q = session.createQuery(sql);
 
 				if (orderByComparator == null) {
-					list = (List<Room>)QueryUtil.list(q, getDialect(), start,
+					list = (List<Room>) QueryUtil.list(q, getDialect(), start,
 							end, false);
 
 					Collections.sort(list);
-				}
-				else {
-					list = (List<Room>)QueryUtil.list(q, getDialect(), start,
+				} else {
+					list = (List<Room>) QueryUtil.list(q, getDialect(), start,
 							end);
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (list == null) {
 					list = new ArrayList<Room>();
 				}
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
 
 				closeSession(session);
 			}
@@ -1532,9 +1694,11 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Removes all the rooms where groupId = &#63; from the database.
-	 *
-	 * @param groupId the group id to search with
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param groupId
+	 *            the group id to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (Room room : findByGroupId(groupId)) {
@@ -1544,9 +1708,11 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Removes all the rooms where name = &#63; from the database.
-	 *
-	 * @param name the name to search with
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param name
+	 *            the name to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByName(String name) throws SystemException {
 		for (Room room : findByName(name)) {
@@ -1556,9 +1722,11 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Removes all the rooms where available = &#63; from the database.
-	 *
-	 * @param available the available to search with
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @param available
+	 *            the available to search with
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeByAvailable(boolean available) throws SystemException {
 		for (Room room : findByAvailable(available)) {
@@ -1568,8 +1736,9 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Removes all the rooms from the database.
-	 *
-	 * @throws SystemException if a system exception occurred
+	 * 
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public void removeAll() throws SystemException {
 		for (Room room : findAll()) {
@@ -1579,16 +1748,18 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Counts all the rooms where groupId = &#63;.
-	 *
-	 * @param groupId the group id to search with
+	 * 
+	 * @param groupId
+	 *            the group id to search with
 	 * @return the number of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByGroupId(long groupId) throws SystemException {
 		Object[] finderArgs = new Object[] { groupId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_GROUPID, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1610,18 +1781,16 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				qPos.add(groupId);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -1632,16 +1801,18 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Counts all the rooms where name = &#63;.
-	 *
-	 * @param name the name to search with
+	 * 
+	 * @param name
+	 *            the name to search with
 	 * @return the number of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByName(String name) throws SystemException {
 		Object[] finderArgs = new Object[] { name };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_NAME,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_NAME, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1655,12 +1826,10 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				if (name == null) {
 					query.append(_FINDER_COLUMN_NAME_NAME_1);
-				}
-				else {
+				} else {
 					if (name.equals(StringPool.BLANK)) {
 						query.append(_FINDER_COLUMN_NAME_NAME_3);
-					}
-					else {
+					} else {
 						query.append(_FINDER_COLUMN_NAME_NAME_2);
 					}
 				}
@@ -1675,18 +1844,16 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 					qPos.add(name);
 				}
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_NAME,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -1697,16 +1864,18 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Counts all the rooms where available = &#63;.
-	 *
-	 * @param available the available to search with
+	 * 
+	 * @param available
+	 *            the available to search with
 	 * @return the number of matching rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countByAvailable(boolean available) throws SystemException {
 		Object[] finderArgs = new Object[] { available };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_AVAILABLE,
-				finderArgs, this);
+		Long count = (Long) FinderCacheUtil.getResult(
+				FINDER_PATH_COUNT_BY_AVAILABLE, finderArgs, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1728,18 +1897,16 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				qPos.add(available);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_AVAILABLE,
-					finderArgs, count);
+						finderArgs, count);
 
 				closeSession(session);
 			}
@@ -1750,14 +1917,15 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 	/**
 	 * Counts all the rooms.
-	 *
+	 * 
 	 * @return the number of rooms
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
+	 *             if a system exception occurred
 	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1768,18 +1936,16 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 
 				Query q = session.createQuery(_SQL_COUNT_ROOM);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
+				count = (Long) q.uniqueResult();
+			} catch (Exception e) {
 				throw processException(e);
-			}
-			finally {
+			} finally {
 				if (count == null) {
 					count = Long.valueOf(0);
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+						count);
 
 				closeSession(session);
 			}
@@ -1792,22 +1958,22 @@ public class RoomPersistenceImpl extends BasePersistenceImpl<Room>
 	 * Initializes the room persistence.
 	 */
 	public void afterPropertiesSet() {
-		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
-					com.liferay.util.service.ServiceProps.get(
-						"value.object.listener.jp.aegif.liferay.experiment.mryoshio.rr.model.Room")));
+		String[] listenerClassNames = StringUtil
+				.split(GetterUtil.getString(com.liferay.util.service.ServiceProps
+						.get("value.object.listener.jp.aegif.liferay.experiment.mryoshio.rr.model.Room")));
 
 		if (listenerClassNames.length > 0) {
 			try {
 				List<ModelListener<Room>> listenersList = new ArrayList<ModelListener<Room>>();
 
 				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<Room>)InstanceFactory.newInstance(
-							listenerClassName));
+					listenersList.add((ModelListener<Room>) InstanceFactory
+							.newInstance(listenerClassName));
 				}
 
-				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
-			}
-			catch (Exception e) {
+				listeners = listenersList
+						.toArray(new ModelListener[listenersList.size()]);
+			} catch (Exception e) {
 				_log.error(e);
 			}
 		}

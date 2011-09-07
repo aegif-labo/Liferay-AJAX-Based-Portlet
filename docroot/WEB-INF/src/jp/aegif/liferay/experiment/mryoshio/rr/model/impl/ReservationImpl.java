@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2011 Aegif Corporation. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -17,17 +17,24 @@ package jp.aegif.liferay.experiment.mryoshio.rr.model.impl;
 import jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation;
 
 /**
- * The model implementation for the Reservation service. Represents a row in the &quot;rr_Reservation&quot; database table, with each column mapped to a property of this class.
- *
+ * The model implementation for the Reservation service. Represents a row in the
+ * &quot;rr_Reservation&quot; database table, with each column mapped to a
+ * property of this class.
+ * 
  * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation} interface.
+ * Helper methods and all application logic should be put in this class.
+ * Whenever methods are added, rerun ServiceBuilder to copy their definitions
+ * into the {@link jp.aegif.liferay.experiment.mryoshio.rr.model.Reservation}
+ * interface.
  * </p>
- *
+ * 
  * <p>
- * Never reference this class directly. All methods that expect a reservation model instance should use the {@link Reservation} interface instead.
+ * Never reference this class directly. All methods that expect a reservation
+ * model instance should use the {@link Reservation} interface instead.
  * </p>
  */
-public class ReservationImpl extends ReservationModelImpl implements Reservation {
+public class ReservationImpl extends ReservationModelImpl implements
+		Reservation {
 	public ReservationImpl() {
 	}
 }
